@@ -1,0 +1,8 @@
+.home {
+    height: 3rem;
+    background-color: #e91e63;
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+}
