@@ -1,0 +1,18 @@
+.home {
+    text-align: center;
+}
+
+h1 {
+    margin-top: 4%;
+}
+
+button {
+    margin: 2rem;
+    font-size: large;
+}
+
+.siteInfo {
+    padding: 20%;
+    padding-top: 5pt;
+    padding-bottom: 5pt;
+}

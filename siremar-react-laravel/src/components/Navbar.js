@@ -4,7 +4,7 @@ import "../style/navbar.css";
 export default function Navbar() {
   return (
     <div className="navbar">
-      <h1>Siremar</h1>
+      <h1 className='siteName'>Siremar</h1>
       <ul>
         <li>Blog</li>
         <li>Services</li>
