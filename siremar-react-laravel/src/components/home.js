@@ -3,7 +3,7 @@ import '../style/home.css'
 
 export default function Home() {
   return (
-    <div className='home'></div>
+    <div className='home'>home</div>
   )
 }
 
