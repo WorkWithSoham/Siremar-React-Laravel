@@ -3,7 +3,12 @@
 }
 
 h1 {
-    margin-top: 4%;
+    /* width: 90%; */
+    font-size: 50px;
+    color: #ffffff;
+    margin-top: 100px; 
+    text-align: center;
+    
 }
 
 button {
@@ -12,7 +17,51 @@ button {
 }
 
 .siteInfo {
-    padding: 20%;
+    display: flex;
+    justify-content: space-around;
+
+    /* position: relative;
+    left: -400px; */
+    /* padding: 34%;
     padding-top: 5pt;
-    padding-bottom: 5pt;
+    padding-bottom: 10pt;
+    text-align: left;
+    font-size: larger; */
+}
+
+.image1 {
+    width: auto;
+    height: 350px;
+    margin: 50px 150px auto 0px;
+    border-radius: 10px;
+
+    /* position: relative; */
+    /* left: 250px;
+    padding: 30%;
+    padding-top: 5pt;
+    padding-bottom: 5pt; */
+    
+}
+
+.content{
+    margin: 70px 80px auto 150px ;
+    font-size: 20px;
+    text-align: left;
+    color: #ffffff9f;
+}
+
+input{
+    margin: 50px 0px;
+    padding: 15px 75px;
+    border-radius: 5px;
+    text-decoration: none;
+    /* color: white; */
+    /* background-color: black; */
+    border: 0px;
+    font-size: 20px;
+}
+
+input:hover{
+  background-color: #e91e63;
+  transition: background-color 3s;
 }
