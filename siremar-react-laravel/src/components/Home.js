@@ -1,9 +1,11 @@
 import React from 'react';
 import '../style/home.css';
+import Navbar from "./Navbar"
 
-export default function Home() {
+function Home() {
   return (
     <div class = 'home'>
+      <Navbar />
       <h1> Portal for residents of Margarita  </h1>
       <div class ='siteInfo'>
         <div class = 'content'> 
@@ -25,4 +27,4 @@ export default function Home() {
   )
 }
 
-
+export default Home;

@@ -25,3 +25,8 @@ li {
   display: inline;
   margin: 1rem;
 }
+
+.linkName{
+  color: white;
+  text-decoration: none;
+}
