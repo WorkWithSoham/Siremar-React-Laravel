@@ -5,7 +5,7 @@ function Register() {
     return (
         <div className='main'>
             
-            <div className="box">
+            <div className="box-def">
             <h1 className="heading">Register</h1>
                 <form className="form-body">
                     <input type="Loginid" name='login_Id' placeholder="Enter Login ID" required className="input-size" />
