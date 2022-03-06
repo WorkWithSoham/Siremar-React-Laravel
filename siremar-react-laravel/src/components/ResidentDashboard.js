@@ -248,6 +248,7 @@ export default function ResidentDashboard() {
                 display: "block",
                 width: "50%",
                 marginLeft: "40%",
+                marginBottom: '2rem',
                 textAlign: "center",
               }}
             >
@@ -301,6 +302,77 @@ export default function ResidentDashboard() {
                       id="bdesc"
                       name="bdesc"
                       placeholder="Write something about your company.."
+                      style={{ height: "200px" }}
+                    ></textarea>
+                  </div>
+                </div>
+                <br />
+                <div className="row">
+                  <input type="submit" value="Submit" />
+                </div>
+              </form>
+            </div>
+            <div
+              className="form1"
+              style={{
+                borderStyle: "solid",
+                borderRadius: "15px",
+                display: "block",
+                width: "50%",
+                marginLeft: "10%",
+                textAlign: "center",
+              }}
+            >
+              <h2>Register Move Out</h2>
+              <form>
+                <div className="row">
+                  <div className="col-25">
+                    <label htmlFor="fname">Current Address</label>
+                  </div>
+                  <div className="col-75">
+                    <input
+                      type="text"
+                      id="c_add"
+                      name="c_add"
+                      placeholder="Mention your current address.."
+                    />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-25">
+                    <label htmlFor="btype">Latest Address</label>
+                  </div>
+                  <div className="col-75">
+                    <input
+                      type="text"
+                      id="l_add"
+                      name="l_add"
+                      placeholder="Mention your next address.."
+                    />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-25">
+                    <label htmlFor="country">Move out Date</label>
+                  </div>
+                  <div className="col-75">
+                    <input
+                      type="date"
+                      id="mod"
+                      name="mod"
+                      placeholder="Date of moving out.."
+                    />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-25">
+                    <label htmlFor="subject">Feedback</label>
+                  </div>
+                  <div className="col-75">
+                    <textarea
+                      id="feedback"
+                      name="feedback"
+                      placeholder="We would love to have your feedback on Margarita..."
                       style={{ height: "200px" }}
                     ></textarea>
                   </div>
