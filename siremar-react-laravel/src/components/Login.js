@@ -2,7 +2,7 @@ import React from "react"
 import '../style/login.css';
 import { Link } from "react-router-dom"
 
-function Login() {
+export default function Login() {
     return (
         <div className="main">
             <h1 className="heading">Siremar</h1>
