@@ -1,12 +1,12 @@
-import React from "react"
-import '../style/login.css';
-import { Link } from "react-router-dom"
+import '../style/register.css';
+import React from "react";
 
-function Login() {
+function Register() {
     return (
-        <div className="main">
-            <h1 className="heading">Siremar</h1>
+        <div className='main'>
+            
             <div className="box">
+            <h1 className="heading">Register</h1>
                 <form className="form-body">
                     <input type="Loginid" name='login_Id' placeholder="Enter Login ID" required className="input-size" />
                     <input type="Password" name='password' placeholder="Enter Password" className="input-size" required />
@@ -15,17 +15,12 @@ function Login() {
                     <button className="button">
                         Sign In
                     </button>
-                    <Link to="/register">
-                        <button type="button" className="">
-                            Register
-                        </button>
-                    </Link>
+
                 </div>
             </div>
-        </div>
 
+        </div>
     )
 }
 
-
-export default Login;
+export default Register;
