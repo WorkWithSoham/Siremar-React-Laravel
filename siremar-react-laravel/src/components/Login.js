@@ -35,7 +35,7 @@ export default function Login() {
                     </div>
 
                     <div className="link">
-                        <a style={{ color: "white", textDecoration: "none", fontSize: "12px" }} href="/"> Register an account</a>
+                        <a style={{ color: "white", textDecoration: "none", fontSize: "12px" }} href="/register"> Register an account</a>
                     </div>
                 </div>
 
