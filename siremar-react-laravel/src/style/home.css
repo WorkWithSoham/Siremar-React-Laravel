@@ -3,11 +3,13 @@
 }
 
 h1 {
-  /* width: 90%; */
   font-size: 50px;
   color: #ffffff;
-  margin-top: 100px;
   text-align: center;
+}
+
+.home h1 {
+  margin-top: 100px;
 }
 
 .home button {
@@ -48,18 +50,20 @@ h1 {
   color: #ffffff9f;
 }
 
-.home input {
+.home button {
   margin: 50px 0px;
   padding: 15px 75px;
   border-radius: 5px;
   text-decoration: none;
-  /* color: white; */
+  color: #e91e63;
   /* background-color: black; */
   border: 0px;
   font-size: 20px;
 }
 
-.home input:hover {
-  background-color: #e91e63;
+.home button:hover {
+  background-color: #421ca8;
   transition: background-color 2s;
+  color: #ffffff !important;
 }
+

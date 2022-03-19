@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../style/home.css";
 
 export default function Home() {
@@ -23,8 +24,18 @@ export default function Home() {
         />
       </div>
       <br />
-      <input type="button" value="EXPLORE MORE" />
+      <button>
+        <Link
+          style={{
+            textDecoration: "none",
+            color: "#e91e63",
+            fontWeight: "bolder",
+          }}
+          to="/login"
+        >
+          Explore More
+        </Link>
+      </button>
     </div>
   );
 }
-

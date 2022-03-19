@@ -1,0 +1,18 @@
+.adminDashboard {
+  margin: 2rem;
+  border-style: solid;
+  border-width: 3px;
+  border-color: antiquewhite;
+}
+
+.welcomeDiv {
+  color: azure;
+  text-align: center;
+  line-height: 10em;
+  background-color: #1c46b8;
+  display: flexbox;
+}
+
+.adminDashboard TabPanel {
+    text-align: center;
+}

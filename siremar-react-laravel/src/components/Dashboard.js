@@ -4,7 +4,7 @@ import InspectorDashboard from "./InspectorDashboard";
 import AdminDashboard from "./AdminDashboard";
 
 export default function Dashboard() {
-  const [userType, setUserType] = useState("IP");
+  const [userType, setUserType] = useState("AD");
 
   if (userType === "RE") {
     return <ResidentDashboard />;

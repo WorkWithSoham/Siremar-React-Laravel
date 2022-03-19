@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import "../style/inspectorDashboard.css";
 
 export default function InspectorDashboard() {
