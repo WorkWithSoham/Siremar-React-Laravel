@@ -1,0 +1,61 @@
+.services {
+    text-align: center;
+    /* margin-bottom: 300px; */
+}
+
+hr {
+    border: 2px solid #e91e63;
+    width: 530px;
+    /* margin-top: 15px; */
+}
+
+.serviceParagraph {
+    color: rgb(248, 212, 212);
+}
+
+.image1 {
+    position: relative;
+    width: 38%;
+    border-radius: 0%;
+    left: 50px;
+    border: 5px solid white;
+
+}
+.image2 {
+    position: relative;
+    width: 38%;
+    top: 300px;
+    right: 200px;
+    border: 5px solid white;
+
+    /* position: absolute;
+    width: 38%;
+    top: 850px;
+    right: 400px;
+    z-index: 1; */
+}
+
+.image3 {
+    position: relative;
+    width: 38%;
+    top: 200px;
+    right: 300px;
+    border: 5px solid white;
+
+    /* position: relative;
+    width: 38%;
+    top: 500px;
+    right: 650px; */
+}
+
+.footer{
+    background-color: #e91e63;
+    text-align: left;
+    color: white;
+    height: 150px;
+    margin-top: 300px;
+}
+
+.footer ul li{
+    display: block;
+}
