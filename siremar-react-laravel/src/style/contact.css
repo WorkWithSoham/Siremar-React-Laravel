@@ -1,4 +1,10 @@
-.register {
+
+  h1
+  {
+      margin-top: 1%;
+      text-align: center;
+  }
+  .register {
     /* display: flex; */
 
     /* align-items: flex-end; */
@@ -30,7 +36,7 @@
 
 .boxreg {
     width: 750px;
-    height: 410px;
+    height: 400px;
     border: 10px solid #e91e63;
     border-radius: 5%;
     text-align: center;
@@ -40,20 +46,32 @@
 .formreg {
 
     margin-top: 2.5%;
-    /* display:flex; */
+    margin-left: 9%;
+    display:inline-flexbox;
 }
 
 
 .input-sizereg {
-    width: 180px;
+    width: 690px;
     height: 40px;
     margin-top: 1%;
+    margin-right: 5%;
 }
-
+.input-sizereg1 {
+    width: 280px;
+    height: 40px;
+    margin-top: 1%;
+    margin-right: 5%;
+}
+.input-sizereg2 {
+    width: 690px;
+    height: 180px;
+    margin-top: 1%;
+    margin-right: 5%;
+}
 .input-bodyreg {
     display: inline-flex;
-    margin-top: 6%
-
+    margin-top: 1%
     
 }
 
