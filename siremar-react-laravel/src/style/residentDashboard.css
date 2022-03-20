@@ -16,7 +16,7 @@
   text-align: center;
   /* height: 10em; */
   line-height: 10em;
-  background-color: #1c46b8;
+  background: linear-gradient(45deg, #1c46b8, crimson);
   display: flexbox;
 }
 
@@ -81,7 +81,7 @@ textarea {
   resize: vertical;
 }
 
-input[type="date"] {
+.residentDashboard input[type="date"] {
   width: 80%;
   padding: 12px;
   border: 1px solid #ccc;
@@ -108,26 +108,26 @@ input[type="date"] {
   background-color: #45a049;
 }
 
-.container {
+.residentDashboard .container {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
 }
 
-.col-25 {
+.residentDashboard .col-25 {
   float: left;
   width: 25%;
   margin-top: 6px;
 }
 
-.col-75 {
+.residentDashboard .col-75 {
   float: left;
   width: 75%;
   margin-top: 6px;
 }
 
 /* Clear floats after the columns */
-.row:after {
+.residentDashboard .row:after {
   content: "";
   display: table;
   clear: both;

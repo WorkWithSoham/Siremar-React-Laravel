@@ -75,3 +75,64 @@ module.exports.getEventDetails = () => {
 
   return eventDetails;
 };
+
+module.exports.getCountyDetails = () => {
+  const countyDetails = [
+    {
+      name: 'County 1',
+      area: '230 sqkm',
+      schools: '12',
+      population: '34000',
+      businesses: '23',
+      hospitals: '2',
+      registeredBy: 'Inspector 2',
+    },
+    {
+      name: 'County 1',
+      area: '230 sqkm',
+      schools: '12',
+      population: '34000',
+      businesses: '23',
+      hospitals: '2',
+      registeredBy: 'Inspector 2',
+    },
+    {
+      name: 'County 1',
+      area: '230 sqkm',
+      schools: '12',
+      population: '34000',
+      businesses: '23',
+      hospitals: '2',
+      registeredBy: 'Inspector 2',
+    },
+    {
+      name: 'County 1',
+      area: '230 sqkm',
+      schools: '12',
+      population: '34000',
+      businesses: '23',
+      hospitals: '2',
+      registeredBy: 'Inspector 2',
+    },
+    {
+      name: 'County 1',
+      area: '230 sqkm',
+      schools: '12',
+      population: '34000',
+      businesses: '23',
+      hospitals: '2',
+      registeredBy: 'Inspector 2',
+    },
+    {
+      name: 'County 1',
+      area: '230 sqkm',
+      schools: '12',
+      population: '34000',
+      businesses: '23',
+      hospitals: '2',
+      registeredBy: 'Inspector 2',
+    },
+  ]
+
+  return countyDetails;
+}
