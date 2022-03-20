@@ -51,7 +51,7 @@ export default function AdminDashboard() {
           <hr style={{ marginRight: "1rem", marginLeft: "inherit" }} />
 
           <TabPanel value="1" sx={{ width: "100%" }}>
-            <h1>Counties</h1>
+            <h1>County Section</h1>
             <div className="countyDiv">
               <table
                 className="table"
@@ -150,7 +150,7 @@ export default function AdminDashboard() {
           </TabPanel>
 
           <TabPanel value="2" sx={{ width: "100%" }}>
-            <h1>Counties</h1>
+            <h1>Business Section</h1>
             <div className="countyDiv">
               <table
                 className="table"
@@ -194,7 +194,7 @@ export default function AdminDashboard() {
                   textAlign: "center",
                 }}
               >
-                <h2>Register Inspector</h2>
+                <h2>Register Business</h2>
                 <form>
                   <div className="row">
                     <div className="col-75">
@@ -258,7 +258,7 @@ export default function AdminDashboard() {
           </TabPanel>
 
           <TabPanel value="3" sx={{ width: "100%" }}>
-            <h1>Counties</h1>
+            <h1>School section</h1>
             <div className="countyDiv">
               <table
                 className="table"
@@ -302,7 +302,7 @@ export default function AdminDashboard() {
                   textAlign: "center",
                 }}
               >
-                <h2>Register Inspector</h2>
+                <h2>Register Schools</h2>
                 <form>
                   <div className="row">
                     <div className="col-75">
@@ -366,7 +366,7 @@ export default function AdminDashboard() {
           </TabPanel>
 
           <TabPanel value="4" sx={{ width: "100%" }}>
-            <h1>Counties</h1>
+            <h1>Hospital Section</h1>
             <div className="countyDiv">
               <table
                 className="table"
@@ -410,7 +410,7 @@ export default function AdminDashboard() {
                   textAlign: "center",
                 }}
               >
-                <h2>Register Inspector</h2>
+                <h2>Register Hospitals</h2>
                 <form>
                   <div className="row">
                     <div className="col-75">
@@ -474,7 +474,7 @@ export default function AdminDashboard() {
           </TabPanel>
 
           <TabPanel value="5" sx={{ width: "100%" }}>
-            <h1>Counties</h1>
+            <h1>Event Section</h1>
             <div className="countyDiv">
               <table
                 className="table"
@@ -518,7 +518,7 @@ export default function AdminDashboard() {
                   textAlign: "center",
                 }}
               >
-                <h2>Register Inspector</h2>
+                <h2>Register Events</h2>
                 <form>
                   <div className="row">
                     <div className="col-75">
@@ -582,7 +582,7 @@ export default function AdminDashboard() {
           </TabPanel>
 
           <TabPanel value="6" sx={{ width: "100%" }}>
-            <h1>Counties</h1>
+            <h1>Flight Section</h1>
             <div className="countyDiv">
               <table
                 className="table"
@@ -626,7 +626,7 @@ export default function AdminDashboard() {
                   textAlign: "center",
                 }}
               >
-                <h2>Register Inspector</h2>
+                <h2>Register Flights</h2>
                 <form>
                   <div className="row">
                     <div className="col-75">
