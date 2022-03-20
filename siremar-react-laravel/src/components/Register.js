@@ -10,8 +10,8 @@ export default function Register() {
 
             <div className="register">
 
-                <div className="boxreg">
-                    <form className="formreg">
+                <div className="boxreg1">
+                    <form className="formreg1">
 
                     <div className="input-bodyreg">
                             <label for="Name" style={{ marginTop: "4%",width: "110px" }} >Name</label>
@@ -51,7 +51,7 @@ export default function Register() {
                     
                     </form>
 
-                    <div className="btn-boxreg">
+                    <div className="btn-boxreg1">
                         <button className="button">Register</button>
                     </div>
                 </div>

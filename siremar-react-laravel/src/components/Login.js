@@ -79,6 +79,25 @@ export default function Login() {
               onClick={() => {
                 const email = document.getElementById("email").value;
                 const password = document.getElementById("password").value;
+            <div className="login">
+
+                <div className="box">
+                    <form className="form">
+
+                        <div className="input-body">
+                            <label for="Loginid" style={{ marginTop: "13%", width: "110px" }} >Login ID</label>
+
+                            <input type="Loginid" name='login_Id' placeholder="Enter Login ID" required className="input-size" />
+                        </div>
+                        <div className="input-body">
+                            <label for="Password" style={{ marginTop: "13%", width: "110px" }}>Password</label>
+                            <input type="Password" name='password' placeholder="Enter Password" className="input-size" required />
+                        </div>
+                    </form>
+
+                    <div className="btn-box">
+                        <button className="button1">Log In</button>
+                    </div>
 
                 login(email, password);
               }}
