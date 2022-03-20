@@ -1,9 +1,25 @@
 import React from "react";
+import { loginAuth } from "../utils/login.auth";
 import "../style/login.css";
-import { Link } from "react-router-dom";
-import { width } from "@mui/system";
 
 export default function Login() {
+  const login = (email, password) => {
+    console.log("login clicked");
+    var userType = window.sessionStorage.getItem("userType");
+    if (userType) {
+      alert("Please log out first!");
+    } else {
+      var user = loginAuth(email, password);
+      if (!user) {
+        alert("Invalid credentials!");
+      } else {
+        console.log(user);
+        window.sessionStorage.setItem("user", JSON.stringify(user));
+        window.location.assign("/dashboard");
+      }
+    }
+  };
+
   return (
     <div className="Loginmain">
       <div className="loginH1">
@@ -25,28 +41,31 @@ export default function Login() {
         <div className="box">
           <form className="form">
             <div className="input-body">
-              <label for="Loginid" style={{ marginTop: "13%", width: "110px" }}>
-                Login ID
+              <label
+                htmlFor="Loginid"
+                style={{ marginTop: "13%", width: "110px" }}
+              >
+                Email ID
               </label>
 
               <input
-                type="Loginid"
-                name="login_Id"
-                placeholder="Enter Login ID"
+                type="Email"
+                id="email"
+                placeholder="Enter Email ID"
                 required
                 className="input-size"
               />
             </div>
             <div className="input-body">
               <label
-                for="Password"
+                htmlFor="Password"
                 style={{ marginTop: "13%", width: "110px" }}
               >
                 Password
               </label>
               <input
                 type="Password"
-                name="password"
+                id="password"
                 placeholder="Enter Password"
                 className="input-size"
                 required
@@ -55,7 +74,17 @@ export default function Login() {
           </form>
 
           <div className="btn-box">
-            <button className="button">Log In</button>
+            <button
+              className="button"
+              onClick={() => {
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+
+                login(email, password);
+              }}
+            >
+              Log In
+            </button>
           </div>
 
           <div className="link">
@@ -67,7 +96,7 @@ export default function Login() {
               }}
               href="/register"
             >
-              {" "}
+              <br />
               Register an account
             </a>
           </div>

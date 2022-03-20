@@ -4,15 +4,17 @@ import InspectorDashboard from "./InspectorDashboard";
 import AdminDashboard from "./AdminDashboard";
 
 export default function Dashboard() {
-  const [userType, setUserType] = useState("AD");
+  const [user, setUser] = useState(
+    JSON.parse(window.sessionStorage.getItem("user"))
+  );
 
-  if (userType === "RE") {
+  if (user.userType === "RE") {
     return <ResidentDashboard />;
-  } else if (userType === "IP") {
+  } else if (user.userType === "IP") {
     return <InspectorDashboard />;
-  } else if (userType === "AD") {
+  } else if (user.userType === "AD") {
     return <AdminDashboard />;
   } else {
-    return <div></div>
+    return <div></div>;
   }
 }

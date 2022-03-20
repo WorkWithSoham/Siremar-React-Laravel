@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "../style/navbar.css";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
+  const [user, setUser] = useState(
+    JSON.parse(window.sessionStorage.getItem("user"))
+  );
+
   return (
     <div className="navbar">
       <h1 className="siteName">
@@ -23,9 +27,28 @@ export default function Navbar() {
         <Link to="/contact" className="linkName">
           <li>Contact</li>
         </Link>
-        <Link to="/login" className="linkName">
-          <li>Login</li>
-        </Link>
+        {!user && (
+          <Link to="/login" className="linkName">
+            <li>Login</li>
+          </Link>
+        )}
+        {user && (
+          <Link to="/dashboard" className="linkName">
+            <li>{user.username}</li>
+          </Link>
+        )}
+        {user && (
+          <Link
+            to="/login"
+            className="linkName"
+            onClick={() => {
+              window.sessionStorage.removeItem("user");
+              window.location.href('/login')
+            }}
+          >
+            <li>Sign Out</li>
+          </Link>
+        )}
       </ul>
     </div>
   );
