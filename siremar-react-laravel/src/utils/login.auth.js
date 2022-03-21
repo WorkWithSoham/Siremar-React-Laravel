@@ -1,5 +1,4 @@
 module.exports.loginAuth = (email, password) => {
-  console.log(email, password);
   const key = email.split("@")[0];
   var temp_dict = {
     inspector: {

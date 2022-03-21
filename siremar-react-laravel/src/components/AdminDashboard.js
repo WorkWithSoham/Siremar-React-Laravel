@@ -45,7 +45,7 @@ export default function AdminDashboard() {
             <Tab value="2" label="Business" />
             <Tab value="3" label="Schools" />
             <Tab value="4" label="Hospitals" />
-            <Tab value="5" label="Population" />
+            <Tab value="5" label="Events" />
             <Tab value="6" label="Flights" />
           </Tabs>
           <hr style={{ marginRight: "1rem", marginLeft: "inherit" }} />

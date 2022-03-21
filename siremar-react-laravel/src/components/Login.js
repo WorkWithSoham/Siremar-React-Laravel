@@ -4,7 +4,6 @@ import "../style/login.css";
 
 export default function Login() {
   const login = (email, password) => {
-    console.log("login clicked");
     var userType = window.sessionStorage.getItem("userType");
     if (userType) {
       alert("Please log out first!");
@@ -13,7 +12,6 @@ export default function Login() {
       if (!user) {
         alert("Invalid credentials!");
       } else {
-        console.log(user);
         window.sessionStorage.setItem("user", JSON.stringify(user));
         window.location.assign("/dashboard");
       }
