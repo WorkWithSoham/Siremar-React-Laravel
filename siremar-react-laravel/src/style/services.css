@@ -56,17 +56,10 @@
     right: 650px; */
 }
 
-.footer {
+.footerblock {
   background-color: #e91e63;
   text-align: left;
   color: white;
   height: auto;
-  margin-top: 300px;
 }
 
-.footer ul li {
-  display: inline-block;
-  padding-right: 10%;
-  line-height: 2;
-  font-size: x-large;
-}
