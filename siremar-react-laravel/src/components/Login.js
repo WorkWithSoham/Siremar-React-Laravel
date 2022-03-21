@@ -1,6 +1,6 @@
 import React from "react";
 import { loginAuth } from "../utils/login.auth";
-import "../style/login.css";
+
 
 export default function Login() {
   const login = (email, password) => {

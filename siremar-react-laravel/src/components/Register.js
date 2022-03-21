@@ -1,6 +1,6 @@
 import React from "react";
 import { loginAuth } from "../utils/login.auth";
-import "../style/register.css";
+
 
 export default function Register() {
   return (

@@ -5,7 +5,8 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 
-import "../style/residentDashboard.css";
+import Chat from './Chat'
+
 import { getFlightDetails, getEventDetails } from "../utils/data.service";
 
 export default function ResidentDashboard() {
@@ -39,6 +40,7 @@ export default function ResidentDashboard() {
               <Tab label="Offers" style={{ fontSize: "large" }} value="1" />
               <Tab label="Near By" style={{ fontSize: "large" }} value="2" />
               <Tab label="Register" style={{ fontSize: "large" }} value="3" />
+              <Tab label="Chat" style={{ fontSize: "large" }} value="4" />
             </TabList>
           </Box>
           <TabPanel value="1">
@@ -248,7 +250,7 @@ export default function ResidentDashboard() {
                 display: "block",
                 width: "50%",
                 marginLeft: "40%",
-                marginBottom: '2rem',
+                marginBottom: "2rem",
                 textAlign: "center",
               }}
             >
@@ -383,6 +385,9 @@ export default function ResidentDashboard() {
                 </div>
               </form>
             </div>
+          </TabPanel>
+          <TabPanel value="4">
+            <Chat />
           </TabPanel>
         </TabContext>
       </Box>

@@ -5,7 +5,8 @@ import Box from "@mui/material/Box";
 import TabContext from "@mui/lab/TabContext";
 import TabPanel from "@mui/lab/TabPanel";
 import { getCountyDetails } from "../utils/data.service";
-import "../style/adminDashboard.css";
+
+import Chat from "./Chat";
 
 export default function AdminDashboard() {
   const greetings = ["Hello", "Namaste", "Bonjour", "Hola", "Welcome"];
@@ -47,6 +48,7 @@ export default function AdminDashboard() {
             <Tab value="4" label="Hospitals" />
             <Tab value="5" label="Events" />
             <Tab value="6" label="Flights" />
+            <Tab value="7" label="Chat" />
           </Tabs>
           <hr style={{ marginRight: "1rem", marginLeft: "inherit" }} />
 
@@ -66,17 +68,53 @@ export default function AdminDashboard() {
                     <th>Hospitals</th>
                     <th>Population</th>
                     <th>Registered By</th>
+                    <th>Actions</th>
                   </tr>
                   {countyDetails.map((value, key) => {
                     return (
                       <tr key={key}>
-                        <td>{value.name}</td>
-                        <td>{value.area}</td>
-                        <td>{value.schools}</td>
-                        <td>{value.businesses}</td>
-                        <td>{value.hospitals}</td>
-                        <td>{value.population}</td>
-                        <td>{value.registeredBy}</td>
+                        <td>
+                          <input defaultValue={value.name} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.area} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.schools} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.businesses} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.hospitals} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.population} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.registeredBy} />
+                        </td>
+                        <td>
+                          <input
+                            type="button"
+                            id="update"
+                            value="Update"
+                            onClick={() => {
+                              setEntity("Inspector");
+                              alert(`${entity} successfully updated`);
+                            }}
+                          />
+                          <input
+                            type="button"
+                            id="delete"
+                            value="Delete"
+                            onClick={() => {
+                              
+                              setEntity("Inspector");
+                              alert(`${entity} successfully deleted`);
+                            }}
+                          />
+                        </td>
                       </tr>
                     );
                   })}
@@ -99,11 +137,7 @@ export default function AdminDashboard() {
                 <form>
                   <div className="row">
                     <div className="col-75">
-                      <input
-                        type="text"
-                        id="CName"
-                        placeholder="Name.."
-                      />
+                      <input type="text" id="CName" placeholder="Name.." />
                     </div>
                   </div>
                   <div className="row">
@@ -150,7 +184,7 @@ export default function AdminDashboard() {
           </TabPanel>
 
           <TabPanel value="2" sx={{ width: "100%" }}>
-            <h1>Business Section</h1>
+            <h1>Bussiness Section</h1>
             <div className="countyDiv">
               <table
                 className="table"
@@ -165,17 +199,52 @@ export default function AdminDashboard() {
                     <th>Hospitals</th>
                     <th>Population</th>
                     <th>Registered By</th>
+                    <th>Actions</th>
                   </tr>
                   {countyDetails.map((value, key) => {
                     return (
                       <tr key={key}>
-                        <td>{value.name}</td>
-                        <td>{value.area}</td>
-                        <td>{value.schools}</td>
-                        <td>{value.businesses}</td>
-                        <td>{value.hospitals}</td>
-                        <td>{value.population}</td>
-                        <td>{value.registeredBy}</td>
+                        <td>
+                          <input defaultValue={value.name} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.area} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.schools} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.businesses} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.hospitals} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.population} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.registeredBy} />
+                        </td>
+                        <td>
+                          <input
+                            type="button"
+                            id="update"
+                            value="Update"
+                            onClick={() => {
+                              setEntity("Business");
+                              alert(`${entity} successfully updated`);
+                            }}
+                          />
+                          <input
+                            type="button"
+                            id="delete"
+                            value="Delete"
+                            onClick={() => {
+                              setEntity("Business");
+                              alert(`${entity} successfully deleted`);
+                            }}
+                          />
+                        </td>
                       </tr>
                     );
                   })}
@@ -198,11 +267,7 @@ export default function AdminDashboard() {
                 <form>
                   <div className="row">
                     <div className="col-75">
-                      <input
-                        type="text"
-                        id="insName"
-                        placeholder="Full Name.."
-                      />
+                      <input type="text" id="CName" placeholder="Name.." />
                     </div>
                   </div>
                   <div className="row">
@@ -210,16 +275,7 @@ export default function AdminDashboard() {
                       <input
                         type="date"
                         id="dob"
-                        placeholder="Date of Birth.."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="date"
-                        id="mid"
-                        placeholder="Date of moving in.."
+                        placeholder="Date of Registration.."
                       />
                     </div>
                   </div>
@@ -258,7 +314,7 @@ export default function AdminDashboard() {
           </TabPanel>
 
           <TabPanel value="3" sx={{ width: "100%" }}>
-            <h1>School section</h1>
+            <h1>Schools Section</h1>
             <div className="countyDiv">
               <table
                 className="table"
@@ -273,17 +329,52 @@ export default function AdminDashboard() {
                     <th>Hospitals</th>
                     <th>Population</th>
                     <th>Registered By</th>
+                    <th>Actions</th>
                   </tr>
                   {countyDetails.map((value, key) => {
                     return (
                       <tr key={key}>
-                        <td>{value.name}</td>
-                        <td>{value.area}</td>
-                        <td>{value.schools}</td>
-                        <td>{value.businesses}</td>
-                        <td>{value.hospitals}</td>
-                        <td>{value.population}</td>
-                        <td>{value.registeredBy}</td>
+                        <td>
+                          <input defaultValue={value.name} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.area} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.schools} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.businesses} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.hospitals} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.population} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.registeredBy} />
+                        </td>
+                        <td>
+                          <input
+                            type="button"
+                            id="update"
+                            value="Update"
+                            onClick={() => {
+                              setEntity("School");
+                              alert(`${entity} successfully updated`);
+                            }}
+                          />
+                          <input
+                            type="button"
+                            id="delete"
+                            value="Delete"
+                            onClick={() => {
+                              setEntity("School");
+                              alert(`${entity} successfully deleted`);
+                            }}
+                          />
+                        </td>
                       </tr>
                     );
                   })}
@@ -302,15 +393,11 @@ export default function AdminDashboard() {
                   textAlign: "center",
                 }}
               >
-                <h2>Register Schools</h2>
+                <h2>Register School</h2>
                 <form>
                   <div className="row">
                     <div className="col-75">
-                      <input
-                        type="text"
-                        id="insName"
-                        placeholder="Full Name.."
-                      />
+                      <input type="text" id="CName" placeholder="Name.." />
                     </div>
                   </div>
                   <div className="row">
@@ -318,16 +405,7 @@ export default function AdminDashboard() {
                       <input
                         type="date"
                         id="dob"
-                        placeholder="Date of Birth.."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="date"
-                        id="mid"
-                        placeholder="Date of moving in.."
+                        placeholder="Date of Registration.."
                       />
                     </div>
                   </div>
@@ -355,7 +433,7 @@ export default function AdminDashboard() {
                       id="submit"
                       value="Submit"
                       onClick={() => {
-                        setEntity("Inspector");
+                        setEntity("School");
                         alert(`${entity} successfully created`);
                       }}
                     />
@@ -381,17 +459,52 @@ export default function AdminDashboard() {
                     <th>Hospitals</th>
                     <th>Population</th>
                     <th>Registered By</th>
+                    <th>Actions</th>
                   </tr>
                   {countyDetails.map((value, key) => {
                     return (
                       <tr key={key}>
-                        <td>{value.name}</td>
-                        <td>{value.area}</td>
-                        <td>{value.schools}</td>
-                        <td>{value.businesses}</td>
-                        <td>{value.hospitals}</td>
-                        <td>{value.population}</td>
-                        <td>{value.registeredBy}</td>
+                        <td>
+                          <input defaultValue={value.name} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.area} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.schools} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.businesses} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.hospitals} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.population} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.registeredBy} />
+                        </td>
+                        <td>
+                          <input
+                            type="button"
+                            id="update"
+                            value="Update"
+                            onClick={() => {
+                              setEntity("Hospital");
+                              alert(`${entity} successfully updated`);
+                            }}
+                          />
+                          <input
+                            type="button"
+                            id="delete"
+                            value="Delete"
+                            onClick={() => {
+                              setEntity("Hospital");
+                              alert(`${entity} successfully deleted`);
+                            }}
+                          />
+                        </td>
                       </tr>
                     );
                   })}
@@ -410,15 +523,11 @@ export default function AdminDashboard() {
                   textAlign: "center",
                 }}
               >
-                <h2>Register Hospitals</h2>
+                <h2>Register Hospital</h2>
                 <form>
                   <div className="row">
                     <div className="col-75">
-                      <input
-                        type="text"
-                        id="insName"
-                        placeholder="Full Name.."
-                      />
+                      <input type="text" id="CName" placeholder="Name.." />
                     </div>
                   </div>
                   <div className="row">
@@ -426,16 +535,7 @@ export default function AdminDashboard() {
                       <input
                         type="date"
                         id="dob"
-                        placeholder="Date of Birth.."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="date"
-                        id="mid"
-                        placeholder="Date of moving in.."
+                        placeholder="Date of Registration.."
                       />
                     </div>
                   </div>
@@ -463,7 +563,7 @@ export default function AdminDashboard() {
                       id="submit"
                       value="Submit"
                       onClick={() => {
-                        setEntity("Inspector");
+                        setEntity("Hospital");
                         alert(`${entity} successfully created`);
                       }}
                     />
@@ -489,17 +589,52 @@ export default function AdminDashboard() {
                     <th>Hospitals</th>
                     <th>Population</th>
                     <th>Registered By</th>
+                    <th>Actions</th>
                   </tr>
                   {countyDetails.map((value, key) => {
                     return (
                       <tr key={key}>
-                        <td>{value.name}</td>
-                        <td>{value.area}</td>
-                        <td>{value.schools}</td>
-                        <td>{value.businesses}</td>
-                        <td>{value.hospitals}</td>
-                        <td>{value.population}</td>
-                        <td>{value.registeredBy}</td>
+                        <td>
+                          <input defaultValue={value.name} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.area} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.schools} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.businesses} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.hospitals} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.population} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.registeredBy} />
+                        </td>
+                        <td>
+                          <input
+                            type="button"
+                            id="update"
+                            value="Update"
+                            onClick={() => {
+                              setEntity("Event");
+                              alert(`${entity} successfully updated`);
+                            }}
+                          />
+                          <input
+                            type="button"
+                            id="delete"
+                            value="Delete"
+                            onClick={() => {
+                              setEntity("Event");
+                              alert(`${entity} successfully deleted`);
+                            }}
+                          />
+                        </td>
                       </tr>
                     );
                   })}
@@ -518,15 +653,11 @@ export default function AdminDashboard() {
                   textAlign: "center",
                 }}
               >
-                <h2>Register Events</h2>
+                <h2>Register Event</h2>
                 <form>
                   <div className="row">
                     <div className="col-75">
-                      <input
-                        type="text"
-                        id="insName"
-                        placeholder="Full Name.."
-                      />
+                      <input type="text" id="CName" placeholder="Name.." />
                     </div>
                   </div>
                   <div className="row">
@@ -534,16 +665,7 @@ export default function AdminDashboard() {
                       <input
                         type="date"
                         id="dob"
-                        placeholder="Date of Birth.."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="date"
-                        id="mid"
-                        placeholder="Date of moving in.."
+                        placeholder="Date of Registration.."
                       />
                     </div>
                   </div>
@@ -571,7 +693,7 @@ export default function AdminDashboard() {
                       id="submit"
                       value="Submit"
                       onClick={() => {
-                        setEntity("Inspector");
+                        setEntity("Event");
                         alert(`${entity} successfully created`);
                       }}
                     />
@@ -597,17 +719,52 @@ export default function AdminDashboard() {
                     <th>Hospitals</th>
                     <th>Population</th>
                     <th>Registered By</th>
+                    <th>Actions</th>
                   </tr>
                   {countyDetails.map((value, key) => {
                     return (
                       <tr key={key}>
-                        <td>{value.name}</td>
-                        <td>{value.area}</td>
-                        <td>{value.schools}</td>
-                        <td>{value.businesses}</td>
-                        <td>{value.hospitals}</td>
-                        <td>{value.population}</td>
-                        <td>{value.registeredBy}</td>
+                        <td>
+                          <input defaultValue={value.name} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.area} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.schools} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.businesses} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.hospitals} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.population} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.registeredBy} />
+                        </td>
+                        <td>
+                          <input
+                            type="button"
+                            id="update"
+                            value="Update"
+                            onClick={() => {
+                              setEntity("Flight");
+                              alert(`${entity} successfully updated`);
+                            }}
+                          />
+                          <input
+                            type="button"
+                            id="delete"
+                            value="Delete"
+                            onClick={() => {
+                              setEntity("Flight");
+                              alert(`${entity} successfully deleted`);
+                            }}
+                          />
+                        </td>
                       </tr>
                     );
                   })}
@@ -626,15 +783,11 @@ export default function AdminDashboard() {
                   textAlign: "center",
                 }}
               >
-                <h2>Register Flights</h2>
+                <h2>Register Flight</h2>
                 <form>
                   <div className="row">
                     <div className="col-75">
-                      <input
-                        type="text"
-                        id="insName"
-                        placeholder="Full Name.."
-                      />
+                      <input type="text" id="CName" placeholder="Name.." />
                     </div>
                   </div>
                   <div className="row">
@@ -642,16 +795,7 @@ export default function AdminDashboard() {
                       <input
                         type="date"
                         id="dob"
-                        placeholder="Date of Birth.."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="date"
-                        id="mid"
-                        placeholder="Date of moving in.."
+                        placeholder="Date of Registration.."
                       />
                     </div>
                   </div>
@@ -679,7 +823,7 @@ export default function AdminDashboard() {
                       id="submit"
                       value="Submit"
                       onClick={() => {
-                        setEntity("Inspector");
+                        setEntity("Flight");
                         alert(`${entity} successfully created`);
                       }}
                     />
@@ -687,6 +831,10 @@ export default function AdminDashboard() {
                 </form>
               </div>
             </div>
+          </TabPanel>
+
+          <TabPanel value="7" sx={{ width: "100%" }}>
+            <Chat />
           </TabPanel>
         </TabContext>
       </Box>
