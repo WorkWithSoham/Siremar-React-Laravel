@@ -1,6 +1,5 @@
 import React from "react";
 
-
 export default function Services() {
   return (
     <div>
@@ -59,19 +58,22 @@ export default function Services() {
           alt="ServicesImg3"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuQ4dGqyZUsQxhkVv8w2_Dc04837KLyu8mWA&usqp=CAU"
           className="image3"
+          style={{ 'marginBottom': '15%' }}
         />
 
-        <div className="footerblock">
-          <div>
-            <i class="fa-solid fa-location-pin locationI"></i>8139 NW 10th St,
-            Oklahoma City, OK 73127
-          </div>
-          <div>
-            <i class="fa-solid fa-phone"></i> +1 555 555 5555
-          </div>
-          <div>
-            <i class="fa-solid fa-envelope"></i> support@gmail.com
-          </div>
+        <div class="footerblock">
+          <ul class="aboutList">
+            <li>
+              <i class="fa-solid fa-location-pin locationI"></i>8139 NW 10th St,
+              Oklahoma City, OK 73127
+            </li>
+            <li>
+              <i class="fa-solid fa-phone"></i> +1 555 555 5555
+            </li>
+            <li>
+              <i class="fa-solid fa-envelope"></i> support@gmail.com
+            </li>
+          </ul>
         </div>
       </div>
     </div>

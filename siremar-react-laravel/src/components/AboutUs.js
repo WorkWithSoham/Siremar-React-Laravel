@@ -26,7 +26,7 @@ export default function AboutUs() {
         </p>
       </div>
 
-      <div class="footer">
+      <div class="footerblock">
         <ul class="aboutList">
           <li>
             <i class="fa-solid fa-location-pin locationI"></i>8139 NW 10th St,
