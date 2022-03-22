@@ -1,9 +1,8 @@
 import React from "react";
 
-
 export default function AboutUs() {
   return (
-    <div class="main">
+    <div class="aboutMain">
       <div class="About">
         <h1>About Siremar</h1>
         <hr />
@@ -12,7 +11,7 @@ export default function AboutUs() {
           src="https://orlandoinformer.com/wp-content/uploads/2019/12/margaritaville-resort-orlando-lobby-seat-1024x768.jpg"
           className="img1"
         />
-        <p>
+        <p style={{ marginTop: "10rem" }}>
           Isla de Margarita was discovered by Columbus in 1498 and quickly
           became known for its pearls. Through the centuries, settlements on the
           island were besieged by Indians (in reprisal for slave raids on the
@@ -26,7 +25,7 @@ export default function AboutUs() {
         </p>
       </div>
 
-      <div class="footerblock">
+      <div class="footerblock" style={{ width: "100%", marginTop: "3rem" }}>
         <ul class="aboutList">
           <li>
             <i class="fa-solid fa-location-pin locationI"></i>8139 NW 10th St,
