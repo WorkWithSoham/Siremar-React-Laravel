@@ -128,3 +128,5 @@ dist
 
 # Ignore PhpMyAdmin
 backend/php*
+
+.DS_Store
