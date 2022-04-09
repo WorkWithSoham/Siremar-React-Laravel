@@ -1,6 +1,6 @@
 import React from "react";
-import { loginAuth } from "../utils/login.auth";
-
+import { Link } from "react-router-dom";
+import { loginAuth } from "../utils/auth";
 
 export default function Login() {
   const login = (email, password) => {
@@ -84,18 +84,18 @@ export default function Login() {
             </button>
           </div>
 
-          <div className="link">
-            <a
-              style={{
-                color: "white",
-                textDecoration: "none",
-                fontSize: "12px",
-              }}
-              href="/register"
-            >
-              <br />
-              Register an account
-            </a>
+          <div className="btn-box">
+            <button className="button" style={{ backgroundColor: "#103167" }}>
+              <Link
+                style={{
+                  color: "white",
+                  textDecoration: "none",
+                }}
+                to="/register"
+              >
+                Register
+              </Link>
+            </button>
           </div>
         </div>
       </div>

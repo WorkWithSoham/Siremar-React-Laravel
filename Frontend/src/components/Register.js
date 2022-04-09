@@ -1,21 +1,46 @@
 import React from "react";
-import { loginAuth } from "../utils/login.auth";
-
+import { registerUser } from "../utils/auth";
 
 export default function Register() {
   return (
     <div className="main-register">
       <div className="register">
+        <h1>Register yourself! </h1>
         <div className="boxreg1">
           <form className="formreg1">
             <div className="input-bodyreg">
               <label htmlFor="Name" style={{ marginTop: "4%", width: "110px" }}>
                 Name
               </label>
+              <input
+                id="name"
+                placeholder="Enter your Name"
+                required
+                className="input-sizereg"
+              />
+            </div>
+
+            <div className="input-bodyreg">
+              <label htmlFor="Name" style={{ marginTop: "4%", width: "110px" }}>
+                Phone Number
+              </label>
+              <input
+                type="Name"
+                id="phNo"
+                placeholder="Enter your Name"
+                required
+                className="input-sizereg"
+              />
+            </div>
+
+            <div className="input-bodyreg">
+              <label htmlFor="Name" style={{ marginTop: "4%", width: "110px" }}>
+                Place of Birth
+              </label>
 
               <input
                 type="Name"
-                name="Name"
+                id="POB"
                 placeholder="Enter your Name"
                 required
                 className="input-sizereg"
@@ -30,9 +55,9 @@ export default function Register() {
                 User Type
               </label>
 
-              <select name="userType" id="type" style={{ width: '180px' }}>
-                <option value="inspector">Inspector</option>
-                <option value="resident">Resident</option>
+              <select name="userType" id="userType" style={{ width: "180px" }}>
+                <option value="IP">Inspector</option>
+                <option value="RE">Resident</option>
               </select>
             </div>
 
@@ -46,7 +71,7 @@ export default function Register() {
 
               <input
                 type="Email"
-                name="Email"
+                id="email"
                 placeholder="Enter your Email ID"
                 required
                 className="input-sizereg"
@@ -62,7 +87,7 @@ export default function Register() {
               </label>
               <input
                 type="Password"
-                name="password"
+                id="password"
                 placeholder="Enter Password"
                 className="input-sizereg"
                 required
@@ -79,7 +104,7 @@ export default function Register() {
 
               <input
                 type="DateOfBirth"
-                name="DateOfBirth"
+                id="DOB"
                 placeholder="MM/DD/YYYY"
                 required
                 className="input-sizereg"
@@ -95,8 +120,8 @@ export default function Register() {
               </label>
 
               <input
-                type="ConfirmPassword"
-                name="ConfirmPassword"
+                type="password"
+                id="confirmPassword"
                 placeholder="Confirm Password"
                 required
                 className="input-sizereg"
@@ -108,12 +133,18 @@ export default function Register() {
             <button
               className="button"
               onClick={() => {
-                const user = loginAuth(
-                  document.getElementById("type").value,
-                  ""
-                );
-                window.sessionStorage.setItem("user", JSON.stringify(user));
-                window.location.assign("/dashboard");
+                const data = {
+                  name: document.getElementById("name").value,
+                  date: document.getElementById("DOB").value,
+                  pob: document.getElementById("POB").value,
+                  pass: document.getElementById("password").value,
+                  cpass: document.getElementById("confirmPassword").value,
+                  email: document.getElementById("email").value,
+                  phNo: document.getElementById("phNo").value,
+                  userType: document.getElementById("userType").value,
+                };
+
+                registerUser(data);
               }}
             >
               Register

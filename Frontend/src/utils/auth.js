@@ -17,3 +17,7 @@ module.exports.loginAuth = (email, password) => {
 
   return temp_dict[key];
 };
+
+module.exports.registerUser = (data) => {
+  console.log(data)
+}
