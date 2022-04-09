@@ -20,13 +20,14 @@ function get_db_conn() {
 
 $conn = get_db_conn();
 
-$sql = "SELECT 'id', name FROM users";
+$sql = "SELECT * FROM users";
 $result = $conn->query($sql);
-
+echo "<br>";
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo "id: " . $row["id"]. " - Name: " . $row["name"]. "<br>";
+        echo implode(", ", $row);
+        echo "<br>";
     }
 } else {
     echo "0 results";

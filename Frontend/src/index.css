@@ -105,6 +105,13 @@ code {
   display: flex;
 }
 
+.countyDiv table {
+  text-align: center;
+  width: 60%;
+  height: 10vh;
+  overflow: scroll;
+}
+
 .adminDashboard .row {
   margin-bottom: 0.3rem;
 }
@@ -122,21 +129,21 @@ code {
 .adminDashboard #update {
   background-color: #db8708;
   color: white;
-  padding: 12px 20px;
+  padding: 6px 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin: 1rem;
+  margin: 0.2rem;
   text-align: center;
 }
 .adminDashboard #delete {
   background-color: #8f0830;
   color: white;
-  padding: 12px 20px;
+  padding: 6px 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin: 1rem;
+  margin: 0.2rem;
   text-align: center;
 }
 
@@ -710,10 +717,22 @@ caption {
   width: 120%;
 }
 
+tbody {
+  display: block;
+  margin-left: 3rem;
+  max-height: 45vh;
+  overflow-y: scroll;
+}
+
 .table td,
 .table th {
   border: 1px solid #ddd;
   padding: 8px;
+}
+
+.table th {
+  position: sticky;
+  top: 0;
 }
 
 .table tr {
@@ -724,7 +743,7 @@ caption {
 .table th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
+  text-align: center;
   background-color: #04aa6d;
   color: white;
 }
@@ -906,21 +925,21 @@ textarea {
 .inspectorDashboard #update {
   background-color: #db8708;
   color: white;
-  padding: 12px 20px;
+  padding: 6px 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin: 1rem;
+  margin: 0.2rem;
   text-align: center;
 }
 .inspectorDashboard #delete {
   background-color: #8f0830;
   color: white;
-  padding: 12px 20px;
+  padding: 6px 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin: 1rem;
+  margin: 0.2rem;
   text-align: center;
 }
 

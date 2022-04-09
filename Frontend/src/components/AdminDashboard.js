@@ -14,7 +14,7 @@ export default function AdminDashboard() {
   const [value, setValue] = useState("1");
   const [entity, setEntity] = useState("");
 
-  const countyDetails = getCountyDetails();
+  const [countyDetails, setCountyDetails] = useState(getCountyDetails());
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -55,10 +55,7 @@ export default function AdminDashboard() {
           <TabPanel value="1" sx={{ width: "100%" }}>
             <h1>County Section</h1>
             <div className="countyDiv">
-              <table
-                className="table"
-                style={{ width: "60%", maxHeight: "44vh", overflowY: "scroll" }}
-              >
+              <table className="table">
                 <tbody>
                   <tr>
                     <th>Name</th>
@@ -67,6 +64,7 @@ export default function AdminDashboard() {
                     <th>Businesses</th>
                     <th>Hospitals</th>
                     <th>Population</th>
+                    <th>Events</th>
                     <th>Registered By</th>
                     <th>Actions</th>
                   </tr>
@@ -92,6 +90,9 @@ export default function AdminDashboard() {
                           <input defaultValue={value.population} />
                         </td>
                         <td>
+                          <input defaultValue={value.population} />
+                        </td>
+                        <td>
                           <input defaultValue={value.registeredBy} />
                         </td>
                         <td>
@@ -109,8 +110,11 @@ export default function AdminDashboard() {
                             id="delete"
                             value="Delete"
                             onClick={() => {
-                              
-                              setEntity("Inspector");
+                              setCountyDetails([
+                                ...countyDetails,
+                                countyDetails.splice(key, 1),
+                              ]);
+                              console.log(countyDetails);
                               alert(`${entity} successfully deleted`);
                             }}
                           />
@@ -137,15 +141,10 @@ export default function AdminDashboard() {
                 <form>
                   <div className="row">
                     <div className="col-75">
-                      <input type="text" id="CName" placeholder="Name.." />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
                       <input
-                        type="date"
-                        id="dob"
-                        placeholder="Date of Registration.."
+                        type="text"
+                        id="Cname"
+                        placeholder="County Name.."
                       />
                     </div>
                   </div>
@@ -153,8 +152,8 @@ export default function AdminDashboard() {
                     <div className="col-75">
                       <input
                         type="text"
-                        id="pob"
-                        placeholder="Place of Birth..."
+                        id="Cpopulation"
+                        placeholder="Total population"
                       />
                     </div>
                   </div>
@@ -162,8 +161,35 @@ export default function AdminDashboard() {
                     <div className="col-75">
                       <input
                         type="text"
-                        id="phoneNo"
-                        placeholder="Please enter a phone number..."
+                        id="Cschools"
+                        placeholder="Number of Schools"
+                      />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-75">
+                      <input
+                        type="text"
+                        id="Cbusiness"
+                        placeholder="Number of Businesses"
+                      />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-75">
+                      <input
+                        type="text"
+                        id="CHosp"
+                        placeholder="Number of Hospitals"
+                      />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-75">
+                      <input
+                        type="text"
+                        id="Cevents"
+                        placeholder="Number of Events"
                       />
                     </div>
                   </div>
@@ -173,8 +199,21 @@ export default function AdminDashboard() {
                       id="submit"
                       value="Submit"
                       onClick={() => {
-                        setEntity("Inspector");
-                        alert(`${entity} successfully created`);
+                        const county = {
+                          name: document.getElementById("Cname").value,
+                          area: "2132sqkm",
+                          schools: document.getElementById("Cschools").value,
+                          population: document.getElementById("Cpopulation").value,
+                          businesses: document.getElementById("Cbusiness").value,
+                          hospitals: document.getElementById("CHosp").value,
+                          events: document.getElementById("Cevents").value,
+                          registeredBy: JSON.parse(
+                            window.sessionStorage.getItem("user")
+                          ).username,
+                        };
+
+                        setCountyDetails([...countyDetails, county]);
+                        console.log(countyDetails);
                       }}
                     />
                   </div>
@@ -186,10 +225,7 @@ export default function AdminDashboard() {
           <TabPanel value="2" sx={{ width: "100%" }}>
             <h1>Bussiness Section</h1>
             <div className="countyDiv">
-              <table
-                className="table"
-                style={{ width: "60%", maxHeight: "44vh", overflowY: "scroll" }}
-              >
+              <table className="table">
                 <tbody>
                   <tr>
                     <th>Name</th>
