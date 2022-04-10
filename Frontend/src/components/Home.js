@@ -45,14 +45,12 @@ export default function Home() {
       <button
         onClick={() => {
           axios({
-            url: "http://localhost:8000/functions/DB_Connection.php",
+            url: "http://localhost:8000/functions/<file-name>",
             method: "post",
             data: {
-              table: "hospital",
+              table: "<table-name>",
             },
-          }).then((res) => {
-            console.log(res)
-          })
+          });
         }}
       >
         Test Button
