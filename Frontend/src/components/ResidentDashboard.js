@@ -5,7 +5,7 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 
-import Chat from './Chat'
+import Chat from "./Chat";
 
 import { getFlightDetails, getEventDetails } from "../utils/data.service";
 
@@ -49,7 +49,7 @@ export default function ResidentDashboard() {
               <div className="tableBox">
                 <table className="table">
                   <caption>Flight Details</caption>
-                  <tbody>
+                  <tbody style={{ display: "contents" }}>
                     <tr>
                       <th>Flight</th>
                       <th>Date</th>
@@ -78,7 +78,7 @@ export default function ResidentDashboard() {
               <div className="tableBox">
                 <table className="table">
                   <caption>Upcoming Events</caption>
-                  <tbody>
+                  <tbody style={{ display: "contents" }}>
                     <tr>
                       <th>Name</th>
                       <th>Event Type</th>
@@ -187,7 +187,7 @@ export default function ResidentDashboard() {
               <form>
                 <div className="row">
                   <div className="col-25">
-                    <label htmlFor="fname">School Name</label>
+                    <label htmlFor="sname">School Name</label>
                   </div>
                   <div className="col-75">
                     <input
@@ -200,12 +200,12 @@ export default function ResidentDashboard() {
                 </div>
                 <div className="row">
                   <div className="col-25">
-                    <label htmlFor="lname">Location</label>
+                    <label htmlFor="sloc">Location</label>
                   </div>
                   <div className="col-75">
                     <input
                       type="text"
-                      id="loc"
+                      id="sloc"
                       name="location"
                       placeholder="School location.."
                     />
@@ -216,7 +216,7 @@ export default function ResidentDashboard() {
                     <label htmlFor="country">Highest Degree</label>
                   </div>
                   <div className="col-75">
-                    <select id="country" name="country">
+                    <select id="shigh" name="country">
                       <option value="5">Elementary School</option>
                       <option value="8">Middle School</option>
                       <option value="12">High School</option>
@@ -236,11 +236,40 @@ export default function ResidentDashboard() {
                     ></textarea>
                   </div>
                 </div>
-                <br />
                 <div className="row">
-                  <input type="submit" value="Submit" />
+                  <div className="col-25">
+                    <label htmlFor="sloc">RegisteredBy</label>
+                  </div>
+                  <div className="col-75">
+                    <input
+                      type="text"
+                      id="sreg"
+                      name="register"
+                      placeholder="School registered by.."
+                    />
+                  </div>
                 </div>
+                <br />
               </form>
+              <div className="row">
+                <input
+                  id="submit"
+                  value="Submit"
+                  type="button"
+                  onClick={() => {
+                    const data = {
+                      name: document.getElementById("sname").value,
+                      location: document.getElementById("sloc").value,
+                      regBy: document.getElementById("sreg").value,
+                      highestDeg: document.getElementById("shigh").value,
+                      desc: document.getElementById("sdesc").value,
+                      db: "schools",
+                    };
+
+                    console.log(data);
+                  }}
+                />
+              </div>
             </div>
             <div
               className="form1"
@@ -263,7 +292,20 @@ export default function ResidentDashboard() {
                   <div className="col-75">
                     <input
                       type="text"
-                      id="cname"
+                      id="bname"
+                      name="comname"
+                      placeholder="Company name.."
+                    />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-25">
+                    <label htmlFor="fname">Owner Name</label>
+                  </div>
+                  <div className="col-75">
+                    <input
+                      type="text"
+                      id="bown"
                       name="comname"
                       placeholder="Company name.."
                     />
@@ -289,7 +331,7 @@ export default function ResidentDashboard() {
                   <div className="col-75">
                     <input
                       type="text"
-                      id="initinv"
+                      id="binv"
                       name="initInv"
                       placeholder="Initial Investment.."
                     />
@@ -308,11 +350,40 @@ export default function ResidentDashboard() {
                     ></textarea>
                   </div>
                 </div>
-                <br />
                 <div className="row">
-                  <input type="submit" value="Submit" />
+                  <div className="col-25">
+                    <label htmlFor="country">Start date</label>
+                  </div>
+                  <div className="col-75">
+                    <input
+                      type="date"
+                      id="bstart"
+                      name="initInv"
+                      placeholder="Initial Investment.."
+                    />
+                  </div>
                 </div>
+                <br />
               </form>
+              <div className="row">
+                <input
+                  id="submit"
+                  type="button"
+                  value="Submit"
+                  onClick={() => {
+                    const data = {
+                      name: document.getElementById("bname").value,
+                      type: document.getElementById("btype").value,
+                      initialInv: document.getElementById("binv").value,
+                      owner: document.getElementById("bown").value,
+                      desc: document.getElementById("bdesc").value,
+                      startDate: document.getElementById("bstart").value,
+                    };
+
+                    console.log(data);
+                  }}
+                />
+              </div>
             </div>
             <div
               className="form1"
@@ -329,25 +400,12 @@ export default function ResidentDashboard() {
               <form>
                 <div className="row">
                   <div className="col-25">
-                    <label htmlFor="fname">Current Address</label>
-                  </div>
-                  <div className="col-75">
-                    <input
-                      type="text"
-                      id="c_add"
-                      name="c_add"
-                      placeholder="Mention your current address.."
-                    />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-25">
                     <label htmlFor="btype">Latest Address</label>
                   </div>
                   <div className="col-75">
                     <input
                       type="text"
-                      id="l_add"
+                      id="madd"
                       name="l_add"
                       placeholder="Mention your next address.."
                     />
@@ -368,11 +426,11 @@ export default function ResidentDashboard() {
                 </div>
                 <div className="row">
                   <div className="col-25">
-                    <label htmlFor="subject">Feedback</label>
+                    <label htmlFor="subject">Reason</label>
                   </div>
                   <div className="col-75">
                     <textarea
-                      id="feedback"
+                      id="mres"
                       name="feedback"
                       placeholder="We would love to have your feedback on Margarita..."
                       style={{ height: "200px" }}
@@ -381,7 +439,20 @@ export default function ResidentDashboard() {
                 </div>
                 <br />
                 <div className="row">
-                  <input type="submit" value="Submit" />
+                  <input
+                    id="submit"
+                    type="button"
+                    value="Submit"
+                    onClick={() => {
+                      const data = {
+                        ladd: document.getElementById('madd').value,
+                        mod: document.getElementById('mod').value,
+                        reason: document.getElementById('mres').value,
+                      }
+
+                      console.log(data)
+                    }}
+                  />
                 </div>
               </form>
             </div>

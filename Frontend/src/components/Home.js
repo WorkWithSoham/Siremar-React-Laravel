@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import axios from "axios";
 
 export default function Home() {
   return (
@@ -36,6 +37,28 @@ export default function Home() {
           Explore More
         </Link>
       </button>
+
+      {/* To be deleted after testing */}
+      {/* Delete start */}
+
+      <br />
+      <button
+        onClick={() => {
+          axios({
+            url: "http://localhost:8000/functions/DB_Connection.php",
+            method: "post",
+            data: {
+              table: "hospital",
+            },
+          }).then((res) => {
+            console.log(res)
+          })
+        }}
+      >
+        Test Button
+      </button>
+
+      {/* Delete end */}
     </div>
   );
 }

@@ -16,17 +16,21 @@ include_once('DB_Connection.php');
         $result = $conn->query($sql);
         
         if ($result->num_rows > 0) {
+            $rows= [];
+            $index = 0;
             // output data of each row
             while($row = $result->fetch_assoc()) {
-                echo "id: ". $row["id"]. " - Name: " . $row["name"]. "<br>";
+                $rows[$index] = $row;
+                $index++;
             }
+            print_r(json_encode($rows));
         
         } else {
                 echo "0 results";
             }
     }
 
-    getList('schools');
+    getList('hospital');
 
 
 ?>

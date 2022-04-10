@@ -7,6 +7,8 @@ import TabPanel from "@mui/lab/TabPanel";
 import { getCountyDetails } from "../utils/data.service";
 
 import Chat from "./Chat";
+import axios from "axios";
+import DetailChart from "./DetailChart";
 
 export default function AdminDashboard() {
   const greetings = ["Hello", "Namaste", "Bonjour", "Hola", "Welcome"];
@@ -14,7 +16,7 @@ export default function AdminDashboard() {
   const [value, setValue] = useState("1");
   const [entity, setEntity] = useState("");
 
-  const countyDetails = getCountyDetails();
+  const [countyDetails, setCountyDetails] = useState(getCountyDetails());
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -43,22 +45,15 @@ export default function AdminDashboard() {
             indicatorColor="primary"
           >
             <Tab value="1" label="Counties" />
-            <Tab value="2" label="Business" />
-            <Tab value="3" label="Schools" />
-            <Tab value="4" label="Hospitals" />
-            <Tab value="5" label="Events" />
-            <Tab value="6" label="Flights" />
-            <Tab value="7" label="Chat" />
+            <Tab value="2" label="Features" />
+            <Tab value="3" label="Chat" />
           </Tabs>
           <hr style={{ marginRight: "1rem", marginLeft: "inherit" }} />
 
           <TabPanel value="1" sx={{ width: "100%" }}>
             <h1>County Section</h1>
             <div className="countyDiv">
-              <table
-                className="table"
-                style={{ width: "60%", maxHeight: "44vh", overflowY: "scroll" }}
-              >
+              <table className="table">
                 <tbody>
                   <tr>
                     <th>Name</th>
@@ -67,12 +62,13 @@ export default function AdminDashboard() {
                     <th>Businesses</th>
                     <th>Hospitals</th>
                     <th>Population</th>
+                    <th>Events</th>
                     <th>Registered By</th>
                     <th>Actions</th>
                   </tr>
-                  {countyDetails.map((value, key) => {
+                  {countyDetails.map((value, idx) => {
                     return (
-                      <tr key={key}>
+                      <tr key={idx}>
                         <td>
                           <input defaultValue={value.name} />
                         </td>
@@ -87,6 +83,9 @@ export default function AdminDashboard() {
                         </td>
                         <td>
                           <input defaultValue={value.hospitals} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.population} />
                         </td>
                         <td>
                           <input defaultValue={value.population} />
@@ -109,8 +108,9 @@ export default function AdminDashboard() {
                             id="delete"
                             value="Delete"
                             onClick={() => {
-                              
-                              setEntity("Inspector");
+                              countyDetails.splice(idx, 1);
+                              console.log(countyDetails);
+                              setCountyDetails([...countyDetails]);
                               alert(`${entity} successfully deleted`);
                             }}
                           />
@@ -137,15 +137,10 @@ export default function AdminDashboard() {
                 <form>
                   <div className="row">
                     <div className="col-75">
-                      <input type="text" id="CName" placeholder="Name.." />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
                       <input
-                        type="date"
-                        id="dob"
-                        placeholder="Date of Registration.."
+                        type="text"
+                        id="Cname"
+                        placeholder="County Name.."
                       />
                     </div>
                   </div>
@@ -153,8 +148,8 @@ export default function AdminDashboard() {
                     <div className="col-75">
                       <input
                         type="text"
-                        id="pob"
-                        placeholder="Place of Birth..."
+                        id="Cpopulation"
+                        placeholder="Total population"
                       />
                     </div>
                   </div>
@@ -162,8 +157,35 @@ export default function AdminDashboard() {
                     <div className="col-75">
                       <input
                         type="text"
-                        id="phoneNo"
-                        placeholder="Please enter a phone number..."
+                        id="Cschools"
+                        placeholder="Number of Schools"
+                      />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-75">
+                      <input
+                        type="text"
+                        id="Cbusiness"
+                        placeholder="Number of Businesses"
+                      />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-75">
+                      <input
+                        type="text"
+                        id="CHosp"
+                        placeholder="Number of Hospitals"
+                      />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-75">
+                      <input
+                        type="text"
+                        id="Cevents"
+                        placeholder="Number of Events"
                       />
                     </div>
                   </div>
@@ -173,32 +195,48 @@ export default function AdminDashboard() {
                       id="submit"
                       value="Submit"
                       onClick={() => {
-                        setEntity("Inspector");
-                        alert(`${entity} successfully created`);
+                        const county = {
+                          name: document.getElementById("Cname").value,
+                          area: "2132sqkm",
+                          schools: document.getElementById("Cschools").value,
+                          population:
+                            document.getElementById("Cpopulation").value,
+                          businesses:
+                            document.getElementById("Cbusiness").value,
+                          hospitals: document.getElementById("CHosp").value,
+                          events: document.getElementById("Cevents").value,
+                          registeredBy: JSON.parse(
+                            window.sessionStorage.getItem("user")
+                          ).username,
+                        };
+
+                        setCountyDetails([...countyDetails, county]);
+                        console.log(countyDetails);
                       }}
                     />
                   </div>
                 </form>
               </div>
             </div>
+            <DetailChart />
           </TabPanel>
 
           <TabPanel value="2" sx={{ width: "100%" }}>
-            <h1>Bussiness Section</h1>
-            <div className="countyDiv">
+            <h1>Feature Section</h1>
+            <div className="featDiv">
               <table
                 className="table"
-                style={{ width: "60%", maxHeight: "44vh", overflowY: "scroll" }}
+                style={{
+                  display: "inline-table",
+                  width: "fit-content",
+                  margin: "auto",
+                }}
               >
                 <tbody>
                   <tr>
                     <th>Name</th>
                     <th>Area</th>
                     <th>Schools</th>
-                    <th>Businesses</th>
-                    <th>Hospitals</th>
-                    <th>Population</th>
-                    <th>Registered By</th>
                     <th>Actions</th>
                   </tr>
                   {countyDetails.map((value, key) => {
@@ -212,18 +250,6 @@ export default function AdminDashboard() {
                         </td>
                         <td>
                           <input defaultValue={value.schools} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.businesses} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.hospitals} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.population} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.registeredBy} />
                         </td>
                         <td>
                           <input
@@ -314,526 +340,6 @@ export default function AdminDashboard() {
           </TabPanel>
 
           <TabPanel value="3" sx={{ width: "100%" }}>
-            <h1>Schools Section</h1>
-            <div className="countyDiv">
-              <table
-                className="table"
-                style={{ width: "60%", maxHeight: "44vh", overflowY: "scroll" }}
-              >
-                <tbody>
-                  <tr>
-                    <th>Name</th>
-                    <th>Area</th>
-                    <th>Schools</th>
-                    <th>Businesses</th>
-                    <th>Hospitals</th>
-                    <th>Population</th>
-                    <th>Registered By</th>
-                    <th>Actions</th>
-                  </tr>
-                  {countyDetails.map((value, key) => {
-                    return (
-                      <tr key={key}>
-                        <td>
-                          <input defaultValue={value.name} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.area} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.schools} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.businesses} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.hospitals} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.population} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.registeredBy} />
-                        </td>
-                        <td>
-                          <input
-                            type="button"
-                            id="update"
-                            value="Update"
-                            onClick={() => {
-                              setEntity("School");
-                              alert(`${entity} successfully updated`);
-                            }}
-                          />
-                          <input
-                            type="button"
-                            id="delete"
-                            value="Delete"
-                            onClick={() => {
-                              setEntity("School");
-                              alert(`${entity} successfully deleted`);
-                            }}
-                          />
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-              <div
-                className="form1"
-                style={{
-                  float: "right",
-                  borderStyle: "solid",
-                  borderRadius: "15px",
-                  display: "block",
-                  width: "40%",
-                  marginX: "2%",
-                  marginInline: "2rem",
-                  textAlign: "center",
-                }}
-              >
-                <h2>Register School</h2>
-                <form>
-                  <div className="row">
-                    <div className="col-75">
-                      <input type="text" id="CName" placeholder="Name.." />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="date"
-                        id="dob"
-                        placeholder="Date of Registration.."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="text"
-                        id="pob"
-                        placeholder="Place of Birth..."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="text"
-                        id="phoneNo"
-                        placeholder="Please enter a phone number..."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <input
-                      type="button"
-                      id="submit"
-                      value="Submit"
-                      onClick={() => {
-                        setEntity("School");
-                        alert(`${entity} successfully created`);
-                      }}
-                    />
-                  </div>
-                </form>
-              </div>
-            </div>
-          </TabPanel>
-
-          <TabPanel value="4" sx={{ width: "100%" }}>
-            <h1>Hospital Section</h1>
-            <div className="countyDiv">
-              <table
-                className="table"
-                style={{ width: "60%", maxHeight: "44vh", overflowY: "scroll" }}
-              >
-                <tbody>
-                  <tr>
-                    <th>Name</th>
-                    <th>Area</th>
-                    <th>Schools</th>
-                    <th>Businesses</th>
-                    <th>Hospitals</th>
-                    <th>Population</th>
-                    <th>Registered By</th>
-                    <th>Actions</th>
-                  </tr>
-                  {countyDetails.map((value, key) => {
-                    return (
-                      <tr key={key}>
-                        <td>
-                          <input defaultValue={value.name} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.area} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.schools} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.businesses} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.hospitals} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.population} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.registeredBy} />
-                        </td>
-                        <td>
-                          <input
-                            type="button"
-                            id="update"
-                            value="Update"
-                            onClick={() => {
-                              setEntity("Hospital");
-                              alert(`${entity} successfully updated`);
-                            }}
-                          />
-                          <input
-                            type="button"
-                            id="delete"
-                            value="Delete"
-                            onClick={() => {
-                              setEntity("Hospital");
-                              alert(`${entity} successfully deleted`);
-                            }}
-                          />
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-              <div
-                className="form1"
-                style={{
-                  float: "right",
-                  borderStyle: "solid",
-                  borderRadius: "15px",
-                  display: "block",
-                  width: "40%",
-                  marginX: "2%",
-                  marginInline: "2rem",
-                  textAlign: "center",
-                }}
-              >
-                <h2>Register Hospital</h2>
-                <form>
-                  <div className="row">
-                    <div className="col-75">
-                      <input type="text" id="CName" placeholder="Name.." />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="date"
-                        id="dob"
-                        placeholder="Date of Registration.."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="text"
-                        id="pob"
-                        placeholder="Place of Birth..."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="text"
-                        id="phoneNo"
-                        placeholder="Please enter a phone number..."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <input
-                      type="button"
-                      id="submit"
-                      value="Submit"
-                      onClick={() => {
-                        setEntity("Hospital");
-                        alert(`${entity} successfully created`);
-                      }}
-                    />
-                  </div>
-                </form>
-              </div>
-            </div>
-          </TabPanel>
-
-          <TabPanel value="5" sx={{ width: "100%" }}>
-            <h1>Event Section</h1>
-            <div className="countyDiv">
-              <table
-                className="table"
-                style={{ width: "60%", maxHeight: "44vh", overflowY: "scroll" }}
-              >
-                <tbody>
-                  <tr>
-                    <th>Name</th>
-                    <th>Area</th>
-                    <th>Schools</th>
-                    <th>Businesses</th>
-                    <th>Hospitals</th>
-                    <th>Population</th>
-                    <th>Registered By</th>
-                    <th>Actions</th>
-                  </tr>
-                  {countyDetails.map((value, key) => {
-                    return (
-                      <tr key={key}>
-                        <td>
-                          <input defaultValue={value.name} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.area} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.schools} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.businesses} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.hospitals} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.population} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.registeredBy} />
-                        </td>
-                        <td>
-                          <input
-                            type="button"
-                            id="update"
-                            value="Update"
-                            onClick={() => {
-                              setEntity("Event");
-                              alert(`${entity} successfully updated`);
-                            }}
-                          />
-                          <input
-                            type="button"
-                            id="delete"
-                            value="Delete"
-                            onClick={() => {
-                              setEntity("Event");
-                              alert(`${entity} successfully deleted`);
-                            }}
-                          />
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-              <div
-                className="form1"
-                style={{
-                  float: "right",
-                  borderStyle: "solid",
-                  borderRadius: "15px",
-                  display: "block",
-                  width: "40%",
-                  marginX: "2%",
-                  marginInline: "2rem",
-                  textAlign: "center",
-                }}
-              >
-                <h2>Register Event</h2>
-                <form>
-                  <div className="row">
-                    <div className="col-75">
-                      <input type="text" id="CName" placeholder="Name.." />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="date"
-                        id="dob"
-                        placeholder="Date of Registration.."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="text"
-                        id="pob"
-                        placeholder="Place of Birth..."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="text"
-                        id="phoneNo"
-                        placeholder="Please enter a phone number..."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <input
-                      type="button"
-                      id="submit"
-                      value="Submit"
-                      onClick={() => {
-                        setEntity("Event");
-                        alert(`${entity} successfully created`);
-                      }}
-                    />
-                  </div>
-                </form>
-              </div>
-            </div>
-          </TabPanel>
-
-          <TabPanel value="6" sx={{ width: "100%" }}>
-            <h1>Flight Section</h1>
-            <div className="countyDiv">
-              <table
-                className="table"
-                style={{ width: "60%", maxHeight: "44vh", overflowY: "scroll" }}
-              >
-                <tbody>
-                  <tr>
-                    <th>Name</th>
-                    <th>Area</th>
-                    <th>Schools</th>
-                    <th>Businesses</th>
-                    <th>Hospitals</th>
-                    <th>Population</th>
-                    <th>Registered By</th>
-                    <th>Actions</th>
-                  </tr>
-                  {countyDetails.map((value, key) => {
-                    return (
-                      <tr key={key}>
-                        <td>
-                          <input defaultValue={value.name} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.area} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.schools} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.businesses} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.hospitals} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.population} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.registeredBy} />
-                        </td>
-                        <td>
-                          <input
-                            type="button"
-                            id="update"
-                            value="Update"
-                            onClick={() => {
-                              setEntity("Flight");
-                              alert(`${entity} successfully updated`);
-                            }}
-                          />
-                          <input
-                            type="button"
-                            id="delete"
-                            value="Delete"
-                            onClick={() => {
-                              setEntity("Flight");
-                              alert(`${entity} successfully deleted`);
-                            }}
-                          />
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-              <div
-                className="form1"
-                style={{
-                  float: "right",
-                  borderStyle: "solid",
-                  borderRadius: "15px",
-                  display: "block",
-                  width: "40%",
-                  marginX: "2%",
-                  marginInline: "2rem",
-                  textAlign: "center",
-                }}
-              >
-                <h2>Register Flight</h2>
-                <form>
-                  <div className="row">
-                    <div className="col-75">
-                      <input type="text" id="CName" placeholder="Name.." />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="date"
-                        id="dob"
-                        placeholder="Date of Registration.."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="text"
-                        id="pob"
-                        placeholder="Place of Birth..."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="text"
-                        id="phoneNo"
-                        placeholder="Please enter a phone number..."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <input
-                      type="button"
-                      id="submit"
-                      value="Submit"
-                      onClick={() => {
-                        setEntity("Flight");
-                        alert(`${entity} successfully created`);
-                      }}
-                    />
-                  </div>
-                </form>
-              </div>
-            </div>
-          </TabPanel>
-
-          <TabPanel value="7" sx={{ width: "100%" }}>
             <Chat />
           </TabPanel>
         </TabContext>

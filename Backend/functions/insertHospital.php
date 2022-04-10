@@ -21,8 +21,13 @@ if ($connection -> connect_errno) {
   
   $stmt = $connection->prepare("INSERT INTO hospital (name, location, startTime, endTime, headDoctor) VALUES (?, ?, ?, ?,?)");
     
-    // $stmt->bind_param("ss", $_POST['resident_name'], $_POST['email'], $_POST['phone'], $_POST['date_of_birth'], $_POST['gender']);
-    $stmt->bind_param("something", 'some location', '', '', 'Pallavi');
+  $_POST['name'] = 'Something';
+   $_POST['location'] = 'Some location';
+    $_POST['startTime'] = '23:16:18.341271';
+     $_POST['endTime'] = '23:16:18.341271'; 
+     $_POST['headDoctor'] = 'Pallavi';
+    $stmt->bind_param('sssss',$_POST['name'], $_POST['location'], $_POST['startTime'], $_POST['endTime'], $_POST['headDoctor']);
+    // $stmt->bind_param("146","something", "something", "23:16:18.341271", "23:16:18.341271", 'Pallavi');
 
     $stmt->execute();
     var_dump($stmt);

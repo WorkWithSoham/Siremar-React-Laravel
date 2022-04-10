@@ -6,7 +6,7 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 
 import Chat from "./Chat";
-import { getCountyDetails } from '../utils/data.service'
+import { getCountyDetails } from "../utils/data.service";
 
 export default function InspectorDashboard() {
   const greetings = ["Hello", "Namaste", "Bonjour", "Hola", "Welcome"];
@@ -63,29 +63,21 @@ export default function InspectorDashboard() {
                 <form>
                   <div className="row">
                     <div className="col-75">
-                      <input
-                        type="text"
-                        id="insName"
-                        placeholder="Full Name.."
-                      />
+                      <input type="text" id="name" placeholder="Full Name.." />
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-75">
                       <input
                         type="text"
-                        id="insEmail"
+                        id="email"
                         placeholder="Mention email.."
                       />
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-75">
-                      <input
-                        type="text"
-                        id="l_add"
-                        placeholder="Mention address.."
-                      />
+                      <input type="text" id="phNo" placeholder="Phone Number" />
                     </div>
                   </div>
                   <div className="row">
@@ -100,27 +92,9 @@ export default function InspectorDashboard() {
                   <div className="row">
                     <div className="col-75">
                       <input
-                        type="date"
-                        id="mid"
-                        placeholder="Date of moving in.."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
                         type="text"
                         id="pob"
-                        placeholder="Place of Birth..."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="text"
-                        id="phoneNo"
-                        placeholder="Please enter a phone number..."
+                        placeholder="Place of Birth"
                       />
                     </div>
                   </div>
@@ -131,7 +105,19 @@ export default function InspectorDashboard() {
                       id="submit"
                       value="Submit"
                       onClick={() => {
-                        setEntity("Inspector");
+                        const data = {
+                          name: document.getElementById("name").value,
+                          date: document.getElementById("dob").value,
+                          pob: document.getElementById("pob").value,
+                          pass: "siremar123",
+                          cpass: "siremar123",
+                          email: document.getElementById("email").value,
+                          phNo: document.getElementById("phNo").value,
+                          userType: "IP",
+                        };
+
+                        console.log(data);
+
                         alert(`${entity} successfully created`);
                       }}
                     />
@@ -493,7 +479,12 @@ export default function InspectorDashboard() {
             <div className="countyDiv">
               <table
                 className="table"
-                style={{ width: "60%", maxHeight: "44vh", overflowY: "scroll", margin: 'auto' }}
+                style={{
+                  width: "60%",
+                  maxHeight: "44vh",
+                  overflowY: "scroll",
+                  margin: "auto",
+                }}
               >
                 <tbody>
                   <tr>
