@@ -8,6 +8,7 @@ import { getCountyDetails } from "../utils/data.service";
 
 import Chat from "./Chat";
 import axios from "axios";
+import DetailChart from "./DetailChart";
 
 export default function AdminDashboard() {
   const greetings = ["Hello", "Namaste", "Bonjour", "Hola", "Welcome"];
@@ -217,6 +218,7 @@ export default function AdminDashboard() {
                 </form>
               </div>
             </div>
+            <DetailChart />
           </TabPanel>
 
           <TabPanel value="2" sx={{ width: "100%" }}>

@@ -816,7 +816,7 @@ textarea {
   display: inline-block;
 }
 
-.residentDashboard input[type="submit"] {
+.residentDashboard #submit {
   background-color: #04aa6d;
   color: white;
   padding: 12px 20px;
