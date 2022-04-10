@@ -10,8 +10,6 @@ $_POST = json_decode($rest_json, true);
 
 
 try{
-//   echo("Hi");
-//   $connection = new mysqli("utacloud2", "rxp3828_superadmin", "padwal.deshmukh.jadhav", "rxp3828_lunamar2");
       // Check connection
       $connection= get_db_conn();
 if ($connection -> connect_errno) {
