@@ -68,7 +68,7 @@ code {
   padding-top: 20px;
 }
 
-.aboutList > li {
+.aboutList>li {
   display: inline-block;
 }
 
@@ -87,6 +87,7 @@ code {
   border-style: hidden;
   background-color: inherit;
   max-width: 70px;
+  text-align: center;
 }
 
 .welcomeDiv {
@@ -112,6 +113,26 @@ code {
   overflow: scroll;
 }
 
+.featDiv {
+  display: inline-flex;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 2rem;
+}
+
+.featDiv table {
+  text-align: center;
+  width: 60%;
+  height: 8vh;
+  overflow: scroll;
+}
+
+.featDiv td input {
+  border-style: hidden;
+  background-color: inherit;
+  text-align: center;
+}
+
 .adminDashboard .row {
   margin-bottom: 0.3rem;
 }
@@ -126,6 +147,7 @@ code {
   margin: 1rem;
   text-align: center;
 }
+
 .adminDashboard #update {
   background-color: #db8708;
   color: white;
@@ -136,6 +158,7 @@ code {
   margin: 0.2rem;
   text-align: center;
 }
+
 .adminDashboard #delete {
   background-color: #8f0830;
   color: white;
@@ -169,18 +192,21 @@ textarea {
   margin-left: 2%;
   border-radius: 10px;
 }
+
 .image6 {
   width: 37%;
   /* margin-left: 1%; */
   margin-right: 2%;
   border-radius: 10px;
 }
+
 .image7 {
   width: 36%;
   /* margin-left: 1%; */
   margin-left: 2%;
   border-radius: 10px;
 }
+
 .blog-box {
   margin: 2%;
   text-align: left;
@@ -209,6 +235,7 @@ h1 {
   margin-top: 1%;
   text-align: center;
 }
+
 .register {
   /* display: flex; */
 
@@ -222,6 +249,7 @@ h1 {
   display: flex;
   justify-content: center;
 }
+
 .btn-boxreg {
   display: flex;
   justify-content: center;
@@ -258,18 +286,21 @@ h1 {
   margin-top: 1%;
   margin-right: 5%;
 }
+
 .input-sizereg1 {
   width: 280px;
   height: 40px;
   margin-top: 1%;
   margin-right: 5%;
 }
+
 .input-sizereg2 {
   width: 690px;
   height: 180px;
   margin-top: 1%;
   margin-right: 5%;
 }
+
 .input-bodyreg {
   display: inline-flex;
   margin-top: 1%;
@@ -283,6 +314,7 @@ h1 {
   margin-top: 1%;
   text-align: center;
 }
+
 .register {
   /* display: flex; */
 
@@ -296,6 +328,7 @@ h1 {
   display: flex;
   justify-content: center;
 }
+
 .btn-boxreg {
   display: flex;
   justify-content: center;
@@ -332,18 +365,21 @@ h1 {
   margin-top: 1%;
   margin-right: 5%;
 }
+
 .input-sizereg1 {
   width: 280px;
   height: 40px;
   margin-top: 1%;
   margin-right: 5%;
 }
+
 .input-sizereg2 {
   width: 690px;
   height: 180px;
   margin-top: 1%;
   margin-right: 5%;
 }
+
 .input-bodyreg {
   display: inline-flex;
   margin-top: 1%;
@@ -617,6 +653,7 @@ h2 {
   display: flex;
   justify-content: center;
 }
+
 .btn-boxreg1 {
   display: flex;
   justify-content: center;
@@ -679,7 +716,7 @@ textarea {
   border-color: antiquewhite;
 }
 
-.dashboardContent > * {
+.dashboardContent>* {
   display: inline-flex;
   /* vertical-align: middle; */
   text-align: center;
@@ -847,6 +884,7 @@ textarea {
   left: 50px;
   border: 5px solid white;
 }
+
 .image2 {
   position: relative;
   width: 38%;
@@ -922,6 +960,7 @@ textarea {
   margin: 1rem;
   text-align: center;
 }
+
 .inspectorDashboard #update {
   background-color: #db8708;
   color: white;
@@ -932,6 +971,7 @@ textarea {
   margin: 0.2rem;
   text-align: center;
 }
+
 .inspectorDashboard #delete {
   background-color: #8f0830;
   color: white;
