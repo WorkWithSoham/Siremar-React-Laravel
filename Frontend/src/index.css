@@ -27,41 +27,37 @@ code {
 }
 
 .About p {
-  color: rgb(248, 212, 212);
+  color: rgb(245, 192, 192);
   font-size: 20px;
-  margin: 100px 150px;
+  margin: 80px 50px;
   text-align: left;
 }
 
-.About hr {
-  border: 2px solid #0b8e1a;
+.main hr {
+  border: 2px solid #e91e63;
   width: 450px;
   margin-top: 15px;
 }
 
+
 .img1 {
-  width: 50%;
-  height: 50%;
-  margin: 6rem 3rem 2rem 3rem;
+  width: auto;
+  height: 400px;
+  margin: 60px 80px auto 60px;
   border-radius: 0%;
   border: 3px solid white;
   float: left;
+}
+
+.img1:hover {
+  transform: scaleX(-1);
+  transition: 2s;
 }
 
 .About h1 {
   margin-bottom: 0px;
 }
 
-/* .footer {
-    background-color: #0b8e1a;
-    text-align: left;
-    color: white;
-    height: 150px;
-  }
-  
-  .footer ul li {
-    display: block;
-  } */
 
 .aboutList {
   float: none;
@@ -192,6 +188,7 @@ textarea {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  margin-top: 20%;
 }
 
 .footerblock li {
@@ -856,12 +853,12 @@ textarea {
     right: 650px; */
 }
 
-.footerblock {
-  background-color: #0b8e1a;
+/* .footerblock {
+  background-color: #e91e63;
   text-align: left;
   color: white;
   height: auto;
-}
+} */
 
 .chatDiv {
   margin: auto;
