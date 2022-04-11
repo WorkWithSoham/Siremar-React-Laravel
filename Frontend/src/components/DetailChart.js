@@ -5,21 +5,30 @@ export default class DetailChart extends Component {
   chartRef = React.createRef();
 
   componentDidMount() {
+    const labels = [];
+    const population = [];
+    const backgroundColor = [];
+    const randomNum = () => Math.floor(Math.random() * (235 - 52 + 1) + 52);
+
+    this.props.county.forEach((res) => {
+      labels.push(res.name);
+      population.push(res.population);
+      backgroundColor.push(
+        `rgb(${randomNum()}, ${randomNum()}, ${randomNum()})`
+      );
+    });
+
     const ctx = this.chartRef.current.getContext("2d");
 
     new Chart(ctx, {
       type: "pie",
       data: {
-        labels: ["Sunday", "Monday", "Tuesday"],
+        labels: labels,
         datasets: [
           {
             label: "My First Dataset",
-            data: [300, 50, 100],
-            backgroundColor: [
-              "rgb(255, 99, 132)",
-              "rgb(54, 162, 235)",
-              "rgb(255, 205, 86)",
-            ],
+            data: population,
+            backgroundColor: backgroundColor,
             hoverOffset: 1,
           },
         ],
@@ -47,6 +56,7 @@ export default class DetailChart extends Component {
           marginBlock: "4%",
         }}
       >
+        <h1>Population density at Margarita</h1>
         <canvas
           id="myChart"
           ref={this.chartRef}

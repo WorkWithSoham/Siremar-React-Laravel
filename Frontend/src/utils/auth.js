@@ -1,4 +1,4 @@
-const { default: axios } = require("axios");
+const { axios } = require("axios");
 
 module.exports.loginAuth = (email, password) => {
   const key = email.split("@")[0];
@@ -21,10 +21,7 @@ module.exports.loginAuth = (email, password) => {
 };
 
 module.exports.registerUser = (data) => {
-  console.log(data)
- axios.post(),
- {
-   data: data
- }
- 
-}
+  console.log(data);
+};
+
+module.exports.url = "http://localhost:8000/functions/";

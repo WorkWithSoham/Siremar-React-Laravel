@@ -1,19 +1,21 @@
 import React from "react";
-import emailjs from 'emailjs-com';
-
+import emailjs from "emailjs-com";
 
 export default function Contact() {
-  function sendEmail(e){
-    e.preventDefault();
+  function sendEmail(e) {
+    // e.preventDefault();
 
-    emailjs.sendForm('gmail', 'youtube_example', e.target, 'gjtqXBz16nZhHFACK')
-      .then((result) => {
+    emailjs
+      .sendForm("gmail", "youtube_example", e.target, "gjtqXBz16nZhHFACK")
+      .then(
+        (result) => {
           console.log(result.text);
-      }, (error) => {
+        },
+        (error) => {
           console.log(error.text);
-      });
-      e.target.reset()
-
+        }
+      );
+    e.target.reset();
   }
   return (
     <div style={{ marginTop: "5%", textAlign: "center" }}>
@@ -31,7 +33,11 @@ export default function Contact() {
         >
           <h1>Contact Us!</h1>
 
-          <form onSubmit={sendEmail} className="residentDashboard" style={{ border: "hidden" }}>
+          <form
+            onSubmit={sendEmail}
+            className="residentDashboard"
+            style={{ border: "hidden" }}
+          >
             <div className="row">
               <div className="col-25">
                 <label htmlFor="fname">Name</label>
@@ -70,8 +76,10 @@ export default function Contact() {
                 rows="10"
                 style={{ width: "60%", marginTop: "1rem" }}
               ></textarea>
-              <div style={{textAlign:"center"}}>
-                <input id="submit" type="button" value="Submit" />
+              <div style={{ textAlign: "center" }}>
+                <button className="button" id="submit" type="submit">
+                  Submit
+                </button>
               </div>
             </div>
           </form>

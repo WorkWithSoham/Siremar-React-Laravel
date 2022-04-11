@@ -1,20 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 
+import axios from "axios";
+import { url } from '../utils/auth'
 import Chat from "./Chat";
-import { getCountyDetails } from "../utils/data.service";
 
 export default function InspectorDashboard() {
+  const getList = async (table) => {
+    return axios({
+      url: url + 'get_list.php',
+      method: "post",
+      data: {
+        table: table,
+      },
+    }).then((res) => {
+      console.log(res.data);
+      if (table === "county") {
+        setCountyDetails(res.data);
+      }
+    });
+  };
+
+  useEffect(() => {
+    getList("county");
+  }, []);
+
   const greetings = ["Hello", "Namaste", "Bonjour", "Hola", "Welcome"];
 
   const [entity, setEntity] = useState("");
   const [value, setValue] = React.useState("1");
-
-  const countyDetails = getCountyDetails();
+  const [countyDetails, setCountyDetails] = useState([]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -169,71 +188,7 @@ export default function InspectorDashboard() {
                     <div className="col-75">
                       <textarea
                         id="feedback"
-                        placeholder="We would love to have your feedback on Margarita..."
-                        style={{ height: "200px" }}
-                      ></textarea>
-                    </div>
-                  </div>
-                  <br />
-                  <div className="row">
-                    <input
-                      type="button"
-                      id="submit"
-                      value="Submit"
-                      onClick={() => {
-                        setEntity("Inspector");
-                        alert(`${entity} successfully created`);
-                      }}
-                    />
-                  </div>
-                </form>
-              </div>
-              <div
-                className="form1"
-                style={{
-                  borderStyle: "solid",
-                  borderRadius: "15px",
-                  display: "block",
-                  width: "120%",
-                  margin: "2%",
-                  marginInline: "2rem",
-                  textAlign: "center",
-                }}
-              >
-                <h2>Register Resident</h2>
-                <form>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="text"
-                        id="c_add"
-                        placeholder="Mention current address.."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="text"
-                        id="l_add"
-                        placeholder="Mention next address.."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="date"
-                        id="mod"
-                        placeholder="Date of moving out.."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <textarea
-                        id="feedback"
-                        placeholder="We would love to have your feedback on Margarita..."
+                        placeholder="We would love to know the reason for move out..."
                         style={{ height: "200px" }}
                       ></textarea>
                     </div>
@@ -270,65 +225,40 @@ export default function InspectorDashboard() {
                 <form>
                   <div className="row">
                     <div className="col-75">
-                      <input
-                        type="text"
-                        id="insName"
-                        placeholder="Full Name.."
-                      />
+                      <input type="text" id="fname" placeholder="Full Name.." />
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-75">
                       <input
                         type="text"
-                        id="insEmail"
-                        placeholder="Mention email.."
+                        id="freg"
+                        placeholder="Registered by..."
                       />
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-75">
-                      <input
-                        type="text"
-                        id="l_add"
-                        placeholder="Mention address.."
-                      />
+                      <select name="userType" id="fType">
+                        <option value="business">Business</option>
+                        <option value="school">School</option>
+                        <option value="event">Event</option>
+                        <option value="hospital">Hospital</option>
+                      </select>
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-75">
                       <input
                         type="date"
-                        id="dob"
-                        placeholder="Date of Birth.."
+                        id="dor"
+                        placeholder="Date of registration.."
                       />
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-75">
-                      <input
-                        type="date"
-                        id="mid"
-                        placeholder="Date of moving in.."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="text"
-                        id="pob"
-                        placeholder="Place of Birth..."
-                      />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="text"
-                        id="phoneNo"
-                        placeholder="Please enter a phone number..."
-                      />
+                      <input type="text" id="rloc" placeholder="Location" />
                     </div>
                   </div>
                   <br />
@@ -338,8 +268,15 @@ export default function InspectorDashboard() {
                       id="submit"
                       value="Submit"
                       onClick={() => {
-                        setEntity("Inspector");
-                        alert(`${entity} successfully created`);
+                        const data = {
+                          name: document.getElementById("fname").value,
+                          reg: document.getElementById("freg").value,
+                          dor: document.getElementById("dor").value,
+                          rloc: document.getElementById("rloc").value,
+                          fType: document.getElementById("fType").value,
+                        };
+
+                        console.log(data);
                       }}
                     />
                   </div>
@@ -357,42 +294,28 @@ export default function InspectorDashboard() {
                   textAlign: "center",
                 }}
               >
-                <h2>Register Event</h2>
+                <h2>Register Discount</h2>
                 <form>
                   <div className="row">
                     <div className="col-75">
-                      <input
-                        type="text"
-                        id="c_add"
-                        placeholder="Mention current address.."
-                      />
+                      <input type="text" id="dis" placeholder="Amount" />
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-75">
-                      <input
-                        type="text"
-                        id="l_add"
-                        placeholder="Mention next address.."
-                      />
+                      <select name="userType" id="fType">
+                        <option value="event">Event</option>
+                        <option value="flight">Flights</option>
+                      </select>
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-75">
                       <input
                         type="date"
-                        id="mod"
-                        placeholder="Date of moving out.."
+                        id="ed"
+                        placeholder="Date of expiry.."
                       />
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
-                      <textarea
-                        id="feedback"
-                        placeholder="We would love to have your feedback on Margarita..."
-                        style={{ height: "200px" }}
-                      ></textarea>
                     </div>
                   </div>
                   <br />
@@ -402,8 +325,13 @@ export default function InspectorDashboard() {
                       id="submit"
                       value="Submit"
                       onClick={() => {
-                        setEntity("Inspector");
-                        alert(`${entity} successfully created`);
+                        const data = {
+                          amount: document.getElementById("dis").value,
+                          ftype: document.getElementById("ftype").value,
+                          expiry: document.getElementById("ed").value,
+                        };
+
+                        console.log(data);
                       }}
                     />
                   </div>
@@ -427,8 +355,8 @@ export default function InspectorDashboard() {
                     <div className="col-75">
                       <input
                         type="text"
-                        id="c_add"
-                        placeholder="Mention current address.."
+                        id="fnum"
+                        placeholder="Flight number.."
                       />
                     </div>
                   </div>
@@ -436,27 +364,36 @@ export default function InspectorDashboard() {
                     <div className="col-75">
                       <input
                         type="text"
-                        id="l_add"
-                        placeholder="Mention next address.."
+                        id="dloc"
+                        placeholder="Mention Departure loc.."
                       />
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-75">
                       <input
-                        type="date"
-                        id="mod"
-                        placeholder="Date of moving out.."
+                        type="text"
+                        id="aloc"
+                        placeholder="Arrival location.."
                       />
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-75">
-                      <textarea
-                        id="feedback"
-                        placeholder="We would love to have your feedback on Margarita..."
-                        style={{ height: "200px" }}
-                      ></textarea>
+                      <input
+                        type="datetime-local"
+                        id="dt"
+                        placeholder="Departure time.."
+                      />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-75">
+                      <input
+                        type="datetime-local"
+                        id="at"
+                        placeholder="Time of arrival.."
+                      />
                     </div>
                   </div>
                   <br />
@@ -476,25 +413,22 @@ export default function InspectorDashboard() {
             </div>
           </TabPanel>
           <TabPanel value="2">
-            <div className="countyDiv">
+            <div className="countyDiv" style={{ paddingInline: "30%" }}>
               <table
                 className="table"
                 style={{
-                  width: "60%",
                   maxHeight: "44vh",
-                  overflowY: "scroll",
+                  overflow: "scroll",
                   margin: "auto",
                 }}
               >
                 <tbody>
                   <tr>
                     <th>Name</th>
-                    <th>Area</th>
                     <th>Schools</th>
                     <th>Businesses</th>
                     <th>Hospitals</th>
                     <th>Population</th>
-                    <th>Registered By</th>
                     <th>Actions</th>
                   </tr>
                   {countyDetails.map((value, key) => {
@@ -504,22 +438,16 @@ export default function InspectorDashboard() {
                           <input defaultValue={value.name} />
                         </td>
                         <td>
-                          <input defaultValue={value.area} />
+                          <input defaultValue={value.school} />
                         </td>
                         <td>
-                          <input defaultValue={value.schools} />
+                          <input defaultValue={value.business} />
                         </td>
                         <td>
-                          <input defaultValue={value.businesses} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.hospitals} />
+                          <input defaultValue={value.hospital} />
                         </td>
                         <td>
                           <input defaultValue={value.population} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.registeredBy} />
                         </td>
                         <td>
                           <input
@@ -536,7 +464,9 @@ export default function InspectorDashboard() {
                             id="delete"
                             value="Delete"
                             onClick={() => {
-                              setEntity("Inspector");
+                              countyDetails.splice(key, 1);
+                              console.log(countyDetails);
+                              setCountyDetails([...countyDetails]);
                               alert(`${entity} successfully deleted`);
                             }}
                           />

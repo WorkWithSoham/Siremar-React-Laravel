@@ -16,7 +16,6 @@ function get_db_conn() {
     if (!$conn) {
       die("Connection failed: " . mysqli_connect_error());
     }
-    echo "Connected successfully";
 
     return $conn;
 }

@@ -176,7 +176,9 @@ textarea {
   resize: vertical;
 }
 
-.adminDashboard input[type="date"] {
+.adminDashboard input[type="date"],
+input[type="datetime-local"],
+input[type="time"] {
   width: 80%;
   padding: 12px;
   border: 1px solid #ccc;

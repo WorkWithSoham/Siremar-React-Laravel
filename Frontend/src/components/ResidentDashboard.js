@@ -1,18 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-
+import axios from "axios";
+import { url } from "../utils/auth";
 import Chat from "./Chat";
 
-import { getFlightDetails, getEventDetails } from "../utils/data.service";
-
 export default function ResidentDashboard() {
+  const getList = async (table) => {
+    return axios({
+      url: url + 'get_list.php',
+      method: "post",
+      data: {
+        table: table,
+      },
+    }).then((res) => {
+      console.log(res.data);
+      if (table === "flights") {
+        setFlightDetails(res.data);
+      }
+      if (table === "events") {
+        setEventDetails(res.data);
+      }
+      if (table === "schools") {
+        setSchoolDetails(res.data);
+      }
+      if (table === "hospital") {
+        setHospitalDetails(res.data);
+      }
+      if (table === "business") {
+        setBusinessDetails(res.data);
+      }
+    });
+  };
+
+  useEffect(() => {
+    getList("flights");
+    getList("events");
+    getList("schools");
+    getList("hospital");
+    getList("business");
+  }, []);
+
+  var [eventDetails, setEventDetails] = useState([]);
+  var [flightDetails, setFlightDetails] = useState([]);
+  var [schoolDetails, setSchoolDetails] = useState([]);
+  var [businessDetails, setBusinessDetails] = useState([]);
+  var [hospitalDetails, setHospitalDetails] = useState([]);
+
   const greetings = ["Hello", "Namaste", "Bonjour", "Hola", "Welcome"];
-  const flightDetails = getFlightDetails();
-  const eventDetails = getEventDetails();
 
   const [value, setValue] = React.useState("1");
 
@@ -52,21 +90,19 @@ export default function ResidentDashboard() {
                   <tbody style={{ display: "contents" }}>
                     <tr>
                       <th>Flight</th>
-                      <th>Date</th>
-                      <th>Destination</th>
-                      <th>Departure</th>
-                      <th>Price</th>
-                      <th>Discount</th>
+                      <th>Departure Time</th>
+                      <th>Arrival Time</th>
+                      <th>Departure Location</th>
+                      <th>Arrival Location</th>
                     </tr>
                     {flightDetails.map((value, key) => {
                       return (
                         <tr key={key}>
-                          <td>{value.flight}</td>
-                          <td>{value.Date}</td>
-                          <td>{value.Destination}</td>
-                          <td>{value.Departure}</td>
-                          <td>{value.Price}</td>
-                          <td>{value.Discount}</td>
+                          <td>{value.flightNumber}</td>
+                          <td>{value.departureTime}</td>
+                          <td>{value.arrivalTime}</td>
+                          <td>{value.departureLocation}</td>
+                          <td>{value.arrivalLocation}</td>
                         </tr>
                       );
                     })}
@@ -90,8 +126,8 @@ export default function ResidentDashboard() {
                     {eventDetails.map((value, key) => {
                       return (
                         <tr key={key}>
-                          <td>{value.name}</td>
-                          <td>{value.type}</td>
+                          <td>{value.eventName}</td>
+                          <td>{value.eventType}</td>
                           <td>{value.location}</td>
                           <td>{value.date}</td>
                           <td>{value.price}</td>
@@ -122,12 +158,13 @@ export default function ResidentDashboard() {
                 <h3 style={{ textAlign: "center" }}>Hospitals</h3>
                 <hr />
                 <ul style={{ margin: "1rem", padding: "1rem" }}>
-                  <li>Hospital Name and Address 1</li>
-                  <li>Hospital Name and Address 2</li>
-                  <li>Hospital Name and Address 3</li>
-                  <li>Hospital Name and Address 4</li>
-                  <li>Hospital Name and Address 5</li>
-                  <li>Hospital Name and Address 6</li>
+                  {hospitalDetails.map((value, key) => {
+                    return (
+                      <li key={key}>
+                        {value.name} at {value.location}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
               <div
@@ -141,12 +178,13 @@ export default function ResidentDashboard() {
                 <h3 style={{ textAlign: "center" }}>Schools</h3>
                 <hr />
                 <ul style={{ margin: "1rem", padding: "1rem" }}>
-                  <li>School Name and Address 1</li>
-                  <li>School Name and Address 2</li>
-                  <li>School Name and Address 3</li>
-                  <li>School Name and Address 4</li>
-                  <li>School Name and Address 5</li>
-                  <li>School Name and Address 6</li>
+                  {schoolDetails.map((value, key) => {
+                    return (
+                      <li key={key}>
+                        {value.name} at {value.location}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
               <div
@@ -160,12 +198,13 @@ export default function ResidentDashboard() {
                 <h3 style={{ textAlign: "center" }}>Businesses</h3>
                 <hr />
                 <ul style={{ margin: "1rem", padding: "1rem" }}>
-                  <li>Business Name and Address 1</li>
-                  <li>Business Name and Address 2</li>
-                  <li>Business Name and Address 3</li>
-                  <li>Business Name and Address 4</li>
-                  <li>Business Name and Address 5</li>
-                  <li>Business Name and Address 6</li>
+                  {businessDetails.map((value, key) => {
+                    return (
+                      <li key={key}>
+                        {value.Name} {value.Type}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </div>
@@ -445,12 +484,12 @@ export default function ResidentDashboard() {
                     value="Submit"
                     onClick={() => {
                       const data = {
-                        ladd: document.getElementById('madd').value,
-                        mod: document.getElementById('mod').value,
-                        reason: document.getElementById('mres').value,
-                      }
+                        ladd: document.getElementById("madd").value,
+                        mod: document.getElementById("mod").value,
+                        reason: document.getElementById("mres").value,
+                      };
 
-                      console.log(data)
+                      console.log(data);
                     }}
                   />
                 </div>

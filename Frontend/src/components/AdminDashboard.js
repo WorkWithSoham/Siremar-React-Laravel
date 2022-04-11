@@ -1,22 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import TabContext from "@mui/lab/TabContext";
 import TabPanel from "@mui/lab/TabPanel";
-import { getCountyDetails } from "../utils/data.service";
+import axios from "axios";
 
 import Chat from "./Chat";
-import axios from "axios";
 import DetailChart from "./DetailChart";
+import { url } from '../utils/auth'
 
 export default function AdminDashboard() {
-  const greetings = ["Hello", "Namaste", "Bonjour", "Hola", "Welcome"];
+  const getList = async (table) => {
+    return axios({
+      url: url + 'get_list.php',
+      method: "post",
+      data: {
+        table: table,
+      },
+    }).then((res) => {
+      console.log(res.data);
+      if (table === "county") {
+        setCountyDetails(res.data);
+      }
+      if (table === "hospital") {
+        setHospitalDetails(res.data);
+      }
+      if (table === "business") {
+        setBusinessDetails(res.data);
+      }
+    });
+  };
 
+  useEffect(() => {
+    getList("county");
+    getList("business");
+    getList("hospital");
+    // getList('event');
+  }, []);
+
+  var [countyDetails, setCountyDetails] = useState([]);
+  var [eventDetails, setEventDetails] = useState([]);
+  var [businessDetails, setBusinessDetails] = useState([]);
+  var [hospitalDetails, setHospitalDetails] = useState([]);
+
+  
+  const [showChart, setShowChart] = useState(false);
+  const greetings = ["Hello", "Namaste", "Bonjour", "Hola", "Welcome"];
   const [value, setValue] = useState("1");
   const [entity, setEntity] = useState("");
 
-  const [countyDetails, setCountyDetails] = useState(getCountyDetails());
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -57,13 +90,11 @@ export default function AdminDashboard() {
                 <tbody>
                   <tr>
                     <th>Name</th>
-                    <th>Area</th>
                     <th>Schools</th>
                     <th>Businesses</th>
                     <th>Hospitals</th>
                     <th>Population</th>
                     <th>Events</th>
-                    <th>Registered By</th>
                     <th>Actions</th>
                   </tr>
                   {countyDetails.map((value, idx) => {
@@ -73,25 +104,19 @@ export default function AdminDashboard() {
                           <input defaultValue={value.name} />
                         </td>
                         <td>
-                          <input defaultValue={value.area} />
+                          <input defaultValue={value.school} />
                         </td>
                         <td>
-                          <input defaultValue={value.schools} />
+                          <input defaultValue={value.business} />
                         </td>
                         <td>
-                          <input defaultValue={value.businesses} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.hospitals} />
+                          <input defaultValue={value.hospital} />
                         </td>
                         <td>
                           <input defaultValue={value.population} />
                         </td>
                         <td>
-                          <input defaultValue={value.population} />
-                        </td>
-                        <td>
-                          <input defaultValue={value.registeredBy} />
+                          <input defaultValue={value.event} />
                         </td>
                         <td>
                           <input
@@ -198,16 +223,12 @@ export default function AdminDashboard() {
                         const county = {
                           name: document.getElementById("Cname").value,
                           area: "2132sqkm",
-                          schools: document.getElementById("Cschools").value,
+                          school: document.getElementById("Cschools").value,
                           population:
                             document.getElementById("Cpopulation").value,
-                          businesses:
-                            document.getElementById("Cbusiness").value,
-                          hospitals: document.getElementById("CHosp").value,
-                          events: document.getElementById("Cevents").value,
-                          registeredBy: JSON.parse(
-                            window.sessionStorage.getItem("user")
-                          ).username,
+                          business: document.getElementById("Cbusiness").value,
+                          hospital: document.getElementById("CHosp").value,
+                          event: document.getElementById("Cevents").value,
                         };
 
                         setCountyDetails([...countyDetails, county]);
@@ -218,7 +239,16 @@ export default function AdminDashboard() {
                 </form>
               </div>
             </div>
-            <DetailChart />
+            <div style={{ width: "100%", marginInline: "50%" }}>
+              <input
+                style={{ textAlign: "center", margin: "auto" }}
+                id="submit"
+                type="button"
+                value="Show Chart"
+                onClick={() => setShowChart(!showChart)}
+              />
+            </div>
+            {showChart && <DetailChart county={countyDetails} />}
           </TabPanel>
 
           <TabPanel value="2" sx={{ width: "100%" }}>
@@ -235,21 +265,29 @@ export default function AdminDashboard() {
                 <tbody>
                   <tr>
                     <th>Name</th>
-                    <th>Area</th>
-                    <th>Schools</th>
+                    <th>Owner</th>
+                    <th>Type</th>
+                    <th>Investment</th>
+                    <th>Started On</th>
                     <th>Actions</th>
                   </tr>
-                  {countyDetails.map((value, key) => {
+                  {businessDetails.map((value, key) => {
                     return (
                       <tr key={key}>
                         <td>
-                          <input defaultValue={value.name} />
+                          <input defaultValue={value.Name} />
                         </td>
                         <td>
-                          <input defaultValue={value.area} />
+                          <input defaultValue={value.Owner} />
                         </td>
                         <td>
-                          <input defaultValue={value.schools} />
+                          <input defaultValue={value.Type} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.Investment} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.StartedOn} />
                         </td>
                         <td>
                           <input
@@ -266,6 +304,8 @@ export default function AdminDashboard() {
                             id="delete"
                             value="Delete"
                             onClick={() => {
+                              businessDetails.splice(key, 1);
+                              setBusinessDetails([...businessDetails]);
                               setEntity("Business");
                               alert(`${entity} successfully deleted`);
                             }}
@@ -293,14 +333,14 @@ export default function AdminDashboard() {
                 <form>
                   <div className="row">
                     <div className="col-75">
-                      <input type="text" id="CName" placeholder="Name.." />
+                      <input type="text" id="bName" placeholder="Name.." />
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-75">
                       <input
                         type="date"
-                        id="dob"
+                        id="dos"
                         placeholder="Date of Registration.."
                       />
                     </div>
@@ -309,7 +349,7 @@ export default function AdminDashboard() {
                     <div className="col-75">
                       <input
                         type="text"
-                        id="pob"
+                        id="btype"
                         placeholder="Place of Birth..."
                       />
                     </div>
@@ -318,8 +358,17 @@ export default function AdminDashboard() {
                     <div className="col-75">
                       <input
                         type="text"
-                        id="phoneNo"
-                        placeholder="Please enter a phone number..."
+                        id="bown"
+                        placeholder="Name of Owner..."
+                      />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-75">
+                      <input
+                        type="text"
+                        id="binit"
+                        placeholder="Initial investment..."
                       />
                     </div>
                   </div>
@@ -329,7 +378,155 @@ export default function AdminDashboard() {
                       id="submit"
                       value="Submit"
                       onClick={() => {
-                        setEntity("Inspector");
+                        const business = {
+                          Name: document.getElementById("bName").value,
+                          Owner: document.getElementById("bown").value,
+                          Type: document.getElementById("btype").value,
+                          Investment: document.getElementById("binit").value,
+                        };
+
+                        setBusinessDetails([...businessDetails, business]);
+                        console.log("Hello");
+                        setEntity("Business");
+                        alert(`${entity} successfully created`);
+                      }}
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div className="featDiv">
+              <table
+                className="table"
+                style={{
+                  display: "inline-table",
+                  width: "fit-content",
+                  margin: "auto",
+                }}
+              >
+                <tbody>
+                  <tr>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Head Doctor On</th>
+                    <th>Actions</th>
+                  </tr>
+                  {hospitalDetails.map((value, key) => {
+                    return (
+                      <tr key={key}>
+                        <td>
+                          <input defaultValue={value.name} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.location} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.startTime} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.endTime} />
+                        </td>
+                        <td>
+                          <input defaultValue={value.headDoctor} />
+                        </td>
+                        <td>
+                          <input
+                            type="button"
+                            id="update"
+                            value="Update"
+                            onClick={() => {
+                              setEntity("Hospital");
+                              alert(`${entity} successfully updated`);
+                            }}
+                          />
+                          <input
+                            type="button"
+                            id="delete"
+                            value="Delete"
+                            onClick={() => {
+                              hospitalDetails.splice(key, 1);
+                              setHospitalDetails([...hospitalDetails]);
+                              setEntity("Hospital");
+                              alert(`${entity} successfully deleted`);
+                            }}
+                          />
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+              <div
+                className="form1"
+                style={{
+                  float: "right",
+                  borderStyle: "solid",
+                  borderRadius: "15px",
+                  display: "block",
+                  width: "40%",
+                  marginX: "2%",
+                  marginInline: "2rem",
+                  textAlign: "center",
+                }}
+              >
+                <h2>Register Hospital</h2>
+                <form>
+                  <div className="row">
+                    <div className="col-75">
+                      <input type="text" id="hName" placeholder="Name.." />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-75">
+                      <input
+                        type="time"
+                        id="stime"
+                        placeholder="Start time..."
+                      />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-75">
+                      <input type="time" id="etime" placeholder="End time..." />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-75">
+                      <input
+                        type="text"
+                        id="hloc"
+                        placeholder="Location of hospital..."
+                      />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-75">
+                      <input
+                        type="text"
+                        id="hd"
+                        placeholder="Name of Head Doctor..."
+                      />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <input
+                      type="button"
+                      id="submit"
+                      value="Submit"
+                      onClick={() => {
+                        const hosp = {
+                          name: document.getElementById("hName").value,
+                          headDoctor: document.getElementById("hd").value,
+                          startTime: document.getElementById("stime").value,
+                          endTime: document.getElementById("etime").value,
+                          location: document.getElementById("hloc").value,
+                        };
+
+                        setHospitalDetails([...hospitalDetails, hosp]);
+                        console.log("Hello");
+                        setEntity("Hospital");
                         alert(`${entity} successfully created`);
                       }}
                     />
