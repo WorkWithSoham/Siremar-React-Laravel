@@ -1,6 +1,20 @@
 import React from "react";
+import emailjs from 'emailjs-com';
+
 
 export default function Contact() {
+  function sendEmail(e){
+    e.preventDefault();
+
+    emailjs.sendForm('gmail', 'youtube_example', e.target, 'gjtqXBz16nZhHFACK')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      e.target.reset()
+
+  }
   return (
     <div style={{ marginTop: "5%", textAlign: "center" }}>
       <div style={{ textAlign: "start" }}>
@@ -9,14 +23,15 @@ export default function Contact() {
           style={{
             borderStyle: "solid",
             borderRadius: "15px",
-            height: "445px",
+            height: "470px",
             width: "75%",
             margin: "2%",
             marginLeft: "12%",
           }}
         >
           <h1>Contact Us!</h1>
-          <form className="residentDashboard" style={{ border: "hidden" }}>
+
+          <form onSubmit={sendEmail} className="residentDashboard" style={{ border: "hidden" }}>
             <div className="row">
               <div className="col-25">
                 <label htmlFor="fname">Name</label>
@@ -24,9 +39,9 @@ export default function Contact() {
               <div className="col-75">
                 <input
                   type="text"
-                  id="sname"
-                  name="schoolname"
-                  placeholder="School name.."
+                  id="name"
+                  name="name"
+                  placeholder="Please enter your name.."
                 />
               </div>
             </div>
@@ -37,8 +52,8 @@ export default function Contact() {
               <div className="col-75">
                 <input
                   type="text"
-                  id="loc"
-                  name="location"
+                  id="email"
+                  name="email"
                   placeholder="Please enter your email.."
                   style={{ marginTop: "0.5rem" }}
                 />
@@ -49,19 +64,22 @@ export default function Contact() {
                 <label htmlFor="country">Feedback</label>
               </div>
               <textarea
-                name="country"
-                id="country"
+                name="message"
+                id="message"
                 cols="10"
                 rows="10"
                 style={{ width: "60%", marginTop: "1rem" }}
               ></textarea>
+              <div style={{textAlign:"center"}}>
+                <input id="submit" type="button" value="Submit" />
+              </div>
             </div>
           </form>
         </div>
       </div>
       <h1>
         We appreciate your Feedback! Thank you!!
-        <span style={{ fontSize: "80px", marginLeft: '1rem' }}>&#128515;</span>
+        <span style={{ fontSize: "80px", marginLeft: "1rem" }}>&#128515;</span>
       </h1>
     </div>
   );

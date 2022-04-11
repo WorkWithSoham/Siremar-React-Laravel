@@ -1,3 +1,5 @@
+const { default: axios } = require("axios");
+
 module.exports.loginAuth = (email, password) => {
   const key = email.split("@")[0];
   var temp_dict = {
@@ -20,4 +22,9 @@ module.exports.loginAuth = (email, password) => {
 
 module.exports.registerUser = (data) => {
   console.log(data)
+ axios.post(),
+ {
+   data: data
+ }
+ 
 }

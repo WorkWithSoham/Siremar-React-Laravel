@@ -1,5 +1,6 @@
 import React from "react";
 import { registerUser } from "../utils/auth";
+import axios from 'axios';
 
 export default function Register() {
   return (
