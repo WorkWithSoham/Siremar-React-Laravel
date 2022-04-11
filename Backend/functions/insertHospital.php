@@ -28,7 +28,7 @@ if ($connection -> connect_errno) {
     // $stmt->bind_param("146","something", "something", "23:16:18.341271", "23:16:18.341271", 'Pallavi');
 
     $stmt->execute();
-    var_dump($stmt);
+    // var_dump($stmt);
 
    
 } catch(Exception $e){

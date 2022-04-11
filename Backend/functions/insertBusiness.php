@@ -9,28 +9,18 @@ $_POST = json_decode($rest_json, true);
 
 
 try{
-      // Check connection
+
       $connection= get_db_conn();
 if ($connection -> connect_errno) {
     echo "Failed to connect to MySQL: " . $connection -> connect_error;
     exit();
   }
   
-  $stmt = $connection->prepare("INSERT INTO county (name, population, bussiness, hospital, event, school) VALUES (?, ?, ?, ?,?, ?)");
-
-  // $_POST['name'] = 'Something';
-  //   $_POST['population'] = '4567';
-  //    $_POST['bussiness'] = '23';
-  //    $_POST['hospital'] = '235'; 
-  //    $_POST['event'] = '98';
-  //    $_POST['school'] = '67';
+  $stmt = $connection->prepare("INSERT INTO business (Name, Owner, Type, Investment, StartedOn) VALUES (?, ?, ?, ?, ?)");
     
-    $stmt->bind_param('ssssss',$_POST['name'], $_POST['population'], $_POST['bussiness'], $_POST['hospital'], $_POST['event'], $_POST['school']);
-    // $stmt->bind_param("146","something", "something", "23:16:18.341271", "23:16:18.341271", 'Pallavi');
+    $stmt->bind_param('ssssss',$_POST['Name'], $_POST['Owner'], $_POST['Type'], $_POST['Investment'], $_POST['StartedOn']);
 
     $stmt->execute();
-    // var_dump($stmt);
-
    
 } catch(Exception $e){
   echo $e->getMessage();

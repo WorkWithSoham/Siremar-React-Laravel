@@ -19,15 +19,15 @@ if ($connection -> connect_errno) {
   
   $stmt = $connection->prepare("INSERT INTO schools (name, location, registeredBy) VALUES (?, ?, ?)");
 
-  $_POST['name'] = 'Something';
-  $_POST['location'] = 'Some location';
-  $_POST['registeredBy'] = 'dnfjnfe';
+  // $_POST['name'] = 'Something';
+  // $_POST['location'] = 'Some location';
+  // $_POST['registeredBy'] = 'dnfjnfe';
     
     $stmt->bind_param('sss',$_POST['name'], $_POST['location'], $_POST['registeredBy']);
     // $stmt->bind_param("146","something", "something", "23:16:18.341271", "23:16:18.341271", 'Pallavi');
 
     $stmt->execute();
-    var_dump($stmt);
+    // var_dump($stmt);
 
    
 } catch(Exception $e){

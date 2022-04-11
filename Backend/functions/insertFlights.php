@@ -18,17 +18,17 @@ if ($connection -> connect_errno) {
   
   $stmt = $connection->prepare("INSERT INTO flights (flightNumber, departureTime, arrivalTime, departureLocation, arrivalLocation) VALUES (?, ?, ?, ?,?)");
 
-  $_POST['flightNumber'] = 'A2356';
-    $_POST['departureTime'] = '2022-07-07 02:24:35.771000';
-     $_POST['arrivalTime'] = '2022-05-18 10:24:35.03600';
-     $_POST['departureLocation'] = 'dfg'; 
-     $_POST['arrivalLocation'] = 'dfs';
+  // $_POST['flightNumber'] = 'A2356';
+  //   $_POST['departureTime'] = '2022-07-07 02:24:35.771000';
+  //    $_POST['arrivalTime'] = '2022-05-18 10:24:35.03600';
+  //    $_POST['departureLocation'] = 'dfg'; 
+  //    $_POST['arrivalLocation'] = 'dfs';
     
     $stmt->bind_param('sssss',$_POST['flightNumber'], $_POST['departureTime'], $_POST['arrivalTime'], $_POST['departureLocation'], $_POST['arrivalLocation']);
     
 
     $stmt->execute();
-    var_dump($stmt);
+    // var_dump($stmt);
 
    
 } catch(Exception $e){

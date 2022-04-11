@@ -37,7 +37,7 @@ if ($connection -> connect_errno) {
     
 
     $stmt->execute();
-    echo json_encode($stmt);
+    // echo json_encode($stmt);
 
    
 } catch(Exception $e){

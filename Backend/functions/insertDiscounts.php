@@ -18,14 +18,14 @@ if ($connection -> connect_errno) {
   
   $stmt = $connection->prepare("INSERT INTO discounts (discount, domain, expiryDate) VALUES (?, ?, ?)");
 
-  $_POST['discount'] = 'Something';
-    $_POST['domain'] = '4567';
-     $_POST['expiryDate'] = '23';
+  // $_POST['discount'] = 'Something';
+  //   $_POST['domain'] = '4567';
+  //    $_POST['expiryDate'] = '23';
     
     $stmt->bind_param('sss',$_POST['discount'], $_POST['domain'], $_POST['expiryDate']);
 
     $stmt->execute();
-    var_dump($stmt);
+    // var_dump($stmt);
 
    
 } catch(Exception $e){
