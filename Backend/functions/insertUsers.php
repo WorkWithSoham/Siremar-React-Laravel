@@ -19,25 +19,25 @@ if ($connection -> connect_errno) {
   $emailId = 'Email Id';
   $dateOfBirth = 'Date Of Birth';
   $phoneNumber = 'Phone Number';
-$confirmPassword = 'Confirm Password';
+  $confirmPassword = 'Confirm Password';
 
 
   $stmt = $connection->prepare("INSERT INTO Users (Name, place_of_birth, email_id, date_of_birth, phone_number, Usertype, Password, confirm_password) VALUES (?, ?, ?, ?,?, ?, ?, ?)");
 
-  $_POST['Name'] = 'Alexa';
-    $_POST['place_of_birth'] = 'Britan';
-     $_POST['email_id'] = 'alx@gmail.com';
-     $_POST['date_of_birth'] = '2022-04-04'; 
-     $_POST['phone_number'] = '4367839';
-     $_POST['Usertype'] = 'Inspector';
-     $_POST['Password'] = 'Alexa';
-     $_POST['confirm_password'] = 'Alexa';
+  //    $_POST['Name'] = 'Alexa';
+  //    $_POST['place_of_birth'] = 'Britan';
+  //    $_POST['email_id'] = 'alx@gmail.com';
+  //    $_POST['date_of_birth'] = '2022-04-04'; 
+  //    $_POST['phone_number'] = '4367839';
+  //    $_POST['Usertype'] = 'Inspector';
+  //    $_POST['Password'] = 'Alexa';
+  //    $_POST['confirm_password'] = 'Alexa';
 
     $stmt->bind_param('ssssssss', $_POST['Name'], $_POST['place_of_birth'], $_POST['email_id'], $_POST['date_of_birth'], $_POST['phone_number'], $_POST['Usertype'], $_POST['Password'], $_POST['confirm_password']);
     
 
     $stmt->execute();
-    var_dump();
+    echo json_encode($stmt);
 
    
 } catch(Exception $e){

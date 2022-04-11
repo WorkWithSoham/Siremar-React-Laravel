@@ -24,7 +24,21 @@ module.exports.loginAuth = (email, password) => {
 };
 
 module.exports.registerUser = (data) => {
-  console.log(data);
+  const regUser = () => {
+    return axios({
+      url: module.exports.url + "insertUsers.php",
+      method: "post",
+      data: data,
+    }).then((res) => {
+      console.log(res);
+    });
+  };
+  if (data.Password === data.confirm_password) {
+    regUser();
+    module.exports.loginAuth(data.email_id, data.Password)
+  } else {
+    alert("Password mismatch");
+  }
 };
 
 module.exports.url = "http://localhost:8000/functions/";

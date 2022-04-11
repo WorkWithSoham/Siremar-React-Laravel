@@ -104,7 +104,7 @@ export default function Register() {
               </label>
 
               <input
-                type="DateOfBirth"
+                type="date"
                 id="DOB"
                 placeholder="MM/DD/YYYY"
                 required
