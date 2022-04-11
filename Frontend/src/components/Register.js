@@ -135,14 +135,14 @@ export default function Register() {
               className="button"
               onClick={() => {
                 const data = {
-                  name: document.getElementById("name").value,
-                  date: document.getElementById("DOB").value,
-                  pob: document.getElementById("POB").value,
-                  pass: document.getElementById("password").value,
-                  cpass: document.getElementById("confirmPassword").value,
-                  email: document.getElementById("email").value,
-                  phNo: document.getElementById("phNo").value,
-                  userType: document.getElementById("userType").value,
+                  Name: document.getElementById("name").value,
+                  date_of_birth : document.getElementById("DOB").value,
+                  place_of_birth: document.getElementById("POB").value,
+                  Password: document.getElementById("password").value,
+                  confirm_password: document.getElementById("confirmPassword").value,
+                  email_id: document.getElementById("email").value,
+                  phone_number: document.getElementById("phNo").value,
+                  Usertype: document.getElementById("userType").value,
                 };
 
                 registerUser(data);
