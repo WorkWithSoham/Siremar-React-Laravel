@@ -6,7 +6,6 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once('DB_Connection.php');
 $rest_json = file_get_contents("php://input");
 $_POST = json_decode($rest_json, true);
-// Port will be removed once deployed on the cloud
 
 
 try{
@@ -17,15 +16,13 @@ if ($connection -> connect_errno) {
     exit();
   }
   
-  $stmt = $connection->prepare("INSERT INTO hospital (name, location, startTime, endTime, headDoctor) VALUES (?, ?, ?, ?,?)");
+  $stmt = $connection->prepare("INSERT INTO moveOut (userId, moveOutDate, currentLocation) VALUES (?, ?, ?)");
+  $_POST['userId'] = '6';
+    $_POST['moveOutDate'] = '2022-07-07';
+     $_POST['currentLocation'] = 'ghjhk';
     
-//    $_POST['name'] = 'Something';
-//     $_POST['location'] = 'Some location';
-//      $_POST['startTime'] = '23:16:18.341271';
-//      $_POST['endTime'] = '23:16:18.341271'; 
-//      $_POST['headDoctor'] = 'Pallavi';
-    $stmt->bind_param('sssss',$_POST['name'], $_POST['location'], $_POST['startTime'], $_POST['endTime'], $_POST['headDoctor']);
-    // $stmt->bind_param("146","something", "something", "23:16:18.341271", "23:16:18.341271", 'Pallavi');
+    $stmt->bind_param('sss',$_POST['userId'], $_POST['moveOutDate'], $_POST['currentLocation']);
+    
 
     $stmt->execute();
     var_dump($stmt);

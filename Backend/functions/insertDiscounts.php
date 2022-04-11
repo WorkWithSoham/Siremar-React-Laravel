@@ -6,7 +6,6 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once('DB_Connection.php');
 $rest_json = file_get_contents("php://input");
 $_POST = json_decode($rest_json, true);
-// Port will be removed once deployed on the cloud
 
 
 try{
@@ -17,15 +16,13 @@ if ($connection -> connect_errno) {
     exit();
   }
   
-  $stmt = $connection->prepare("INSERT INTO hospital (name, location, startTime, endTime, headDoctor) VALUES (?, ?, ?, ?,?)");
+  $stmt = $connection->prepare("INSERT INTO discounts (discount, domain, expiryDate) VALUES (?, ?, ?)");
+
+  $_POST['discount'] = 'Something';
+    $_POST['domain'] = '4567';
+     $_POST['expiryDate'] = '23';
     
-//    $_POST['name'] = 'Something';
-//     $_POST['location'] = 'Some location';
-//      $_POST['startTime'] = '23:16:18.341271';
-//      $_POST['endTime'] = '23:16:18.341271'; 
-//      $_POST['headDoctor'] = 'Pallavi';
-    $stmt->bind_param('sssss',$_POST['name'], $_POST['location'], $_POST['startTime'], $_POST['endTime'], $_POST['headDoctor']);
-    // $stmt->bind_param("146","something", "something", "23:16:18.341271", "23:16:18.341271", 'Pallavi');
+    $stmt->bind_param('sss',$_POST['discount'], $_POST['domain'], $_POST['expiryDate']);
 
     $stmt->execute();
     var_dump($stmt);

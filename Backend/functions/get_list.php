@@ -32,7 +32,11 @@ include_once('DB_Connection.php');
             }
     }
 
+    //use below statement for production purpose
     getList($_POST['table']);
+
+    // use below statement to check
+    // getList('Users');
 
 
 ?>

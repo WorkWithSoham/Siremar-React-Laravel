@@ -6,7 +6,6 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once('DB_Connection.php');
 $rest_json = file_get_contents("php://input");
 $_POST = json_decode($rest_json, true);
-// Port will be removed once deployed on the cloud
 
 
 try{
@@ -17,15 +16,16 @@ if ($connection -> connect_errno) {
     exit();
   }
   
-  $stmt = $connection->prepare("INSERT INTO hospital (name, location, startTime, endTime, headDoctor) VALUES (?, ?, ?, ?,?)");
+  $stmt = $connection->prepare("INSERT INTO flights (flightNumber, departureTime, arrivalTime, departureLocation, arrivalLocation) VALUES (?, ?, ?, ?,?)");
+
+  $_POST['flightNumber'] = 'A2356';
+    $_POST['departureTime'] = '2022-07-07 02:24:35.771000';
+     $_POST['arrivalTime'] = '2022-05-18 10:24:35.03600';
+     $_POST['departureLocation'] = 'dfg'; 
+     $_POST['arrivalLocation'] = 'dfs';
     
-//    $_POST['name'] = 'Something';
-//     $_POST['location'] = 'Some location';
-//      $_POST['startTime'] = '23:16:18.341271';
-//      $_POST['endTime'] = '23:16:18.341271'; 
-//      $_POST['headDoctor'] = 'Pallavi';
-    $stmt->bind_param('sssss',$_POST['name'], $_POST['location'], $_POST['startTime'], $_POST['endTime'], $_POST['headDoctor']);
-    // $stmt->bind_param("146","something", "something", "23:16:18.341271", "23:16:18.341271", 'Pallavi');
+    $stmt->bind_param('sssss',$_POST['flightNumber'], $_POST['departureTime'], $_POST['arrivalTime'], $_POST['departureLocation'], $_POST['arrivalLocation']);
+    
 
     $stmt->execute();
     var_dump($stmt);

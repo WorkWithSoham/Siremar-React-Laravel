@@ -45,7 +45,7 @@ export default function Home() {
       <button
         onClick={() => {
           axios({
-            url: "http://localhost:8000/functions/<file-name>",
+            url: "http://localhost:8000/functions/<file name>",
             method: "post",
             data: {
               table: "<table-name>",
