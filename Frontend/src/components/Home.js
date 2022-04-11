@@ -36,27 +36,7 @@ export default function Home() {
         >
           Explore More
         </Link>
-      </button>
-
-      {/* To be deleted after testing */}
-      {/* Delete start */}
-
-      <br />
-      <button
-        onClick={() => {
-          axios({
-            url: "http://localhost:8000/functions/<file name>",
-            method: "post",
-            data: {
-              table: "<table-name>",
-            },
-          });
-        }}
-      >
-        Test Button
-      </button>
-
-      {/* Delete end */}
+      </button> 
     </div>
   );
 }

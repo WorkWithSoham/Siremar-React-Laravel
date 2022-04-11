@@ -17,15 +17,15 @@ if ($connection -> connect_errno) {
   }
   
   $stmt = $connection->prepare("INSERT INTO moveOut (userId, moveOutDate, currentLocation) VALUES (?, ?, ?)");
-  $_POST['userId'] = '6';
-    $_POST['moveOutDate'] = '2022-07-07';
-     $_POST['currentLocation'] = 'ghjhk';
+  // $_POST['userId'] = '6';
+  //   $_POST['moveOutDate'] = '2022-07-07';
+  //    $_POST['currentLocation'] = 'ghjhk';
     
     $stmt->bind_param('sss',$_POST['userId'], $_POST['moveOutDate'], $_POST['currentLocation']);
     
 
     $stmt->execute();
-    var_dump($stmt);
+    // var_dump($stmt);
 
    
 } catch(Exception $e){

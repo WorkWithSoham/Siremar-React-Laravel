@@ -34,7 +34,7 @@ export default function Navbar() {
         )}
         {user && (
           <Link to="/dashboard" className="linkName">
-            <li>{user.Name}</li>
+            <li>{user.Name.toUpperCase()}</li>
           </Link>
         )}
         {user && (
