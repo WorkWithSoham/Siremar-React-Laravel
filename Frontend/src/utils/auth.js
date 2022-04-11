@@ -1,23 +1,26 @@
-const { axios } = require("axios");
+const axios = require("axios");
 
 module.exports.loginAuth = (email, password) => {
-  const key = email.split("@")[0];
-  var temp_dict = {
-    inspector: {
-      username: "Inspector",
-      userType: "IP",
-    },
-    admin: {
-      username: "Admin",
-      userType: "AD",
-    },
-    resident: {
-      username: "Resident",
-      userType: "RE",
-    },
+  const getList = () => {
+    return axios({
+      url: module.exports.url + "get_list.php",
+      method: "post",
+      data: {
+        table: "Users",
+      },
+    }).then((res) => {
+      var data = res.data.filter(
+        (user) => user.email_id === email && user.Password === password
+      );
+      if (data.length && data[0].Name) {
+        window.sessionStorage.setItem("user", JSON.stringify(data[0]));
+        window.location.assign("/dashboard");
+      } else {
+        alert("Invalid credentials!");
+      }
+    });
   };
-
-  return temp_dict[key];
+  getList();
 };
 
 module.exports.registerUser = (data) => {

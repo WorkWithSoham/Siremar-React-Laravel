@@ -8,13 +8,7 @@ export default function Login() {
     if (userType) {
       alert("Please log out first!");
     } else {
-      var user = loginAuth(email, password);
-      if (!user) {
-        alert("Invalid credentials!");
-      } else {
-        window.sessionStorage.setItem("user", JSON.stringify(user));
-        window.location.assign("/dashboard");
-      }
+      var user = loginAuth(email, password); 
     }
   };
 

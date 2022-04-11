@@ -34,7 +34,7 @@ export default function Navbar() {
         )}
         {user && (
           <Link to="/dashboard" className="linkName">
-            <li>{user.username}</li>
+            <li>{user.Name}</li>
           </Link>
         )}
         {user && (
