@@ -35,10 +35,10 @@ module.exports.registerUser = (data) => {
   };
   if (data.Password === data.confirm_password) {
     regUser();
-    module.exports.loginAuth(data.email_id, data.Password)
+    module.exports.loginAuth(data.email_id, data.Password);
   } else {
     alert("Password mismatch");
   }
 };
 
-module.exports.url = "http://localhost:8000/functions/";
+module.exports.url = "http://backend.sst0847.uta.cloud/functions/";
