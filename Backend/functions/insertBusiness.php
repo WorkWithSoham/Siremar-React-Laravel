@@ -17,7 +17,7 @@ try {
 
     $stmt = $connection->prepare("INSERT INTO business (Name, Owner, Type, Investment, StartedOn) VALUES (?, ?, ?, ?, ?)");
 
-    $stmt->bind_param('ssssss', $_POST['Name'], $_POST['Owner'], $_POST['Type'], $_POST['Investment'], $_POST['StartedOn']);
+    $stmt->bind_param("sssss", $_POST['Name'], $_POST['Owner'], $_POST['Type'], $_POST['Investment'], $_POST['StartedOn']);
 
     $stmt->execute();
 

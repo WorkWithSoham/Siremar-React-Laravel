@@ -15,12 +15,12 @@ try {
         exit();
     }
 
-    $stmt = $connection->prepare("INSERT INTO moveOut (userId, moveOutDate, currentLocation) VALUES (?, ?, ?)");
+    $stmt = $connection->prepare("INSERT INTO moveOut (userId, moveOutDate, currentLocation, reason) VALUES (?, ?, ?, ?)");
     // $_POST['userId'] = '6';
     //   $_POST['moveOutDate'] = '2022-07-07';
     //    $_POST['currentLocation'] = 'ghjhk';
 
-    $stmt->bind_param('sss', $_POST['userId'], $_POST['moveOutDate'], $_POST['currentLocation']);
+    $stmt->bind_param('ssss', $_POST['userId'], $_POST['moveOutDate'], $_POST['currentLocation'], $_POST['reason']);
 
     $stmt->execute();
     // var_dump($stmt);

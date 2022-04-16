@@ -14,11 +14,7 @@ try {
         echo "Failed to connect to MySQL: " . $connection->connect_error;
         exit();
     }
-    $placeOfBirth = 'Place of Birth';
-    $emailId = 'Email Id';
-    $dateOfBirth = 'Date Of Birth';
-    $phoneNumber = 'Phone Number';
-    $confirmPassword = 'Confirm Password';
+  
 
     $stmt = $connection->prepare("INSERT INTO Users (Name, place_of_birth, email_id, date_of_birth, phone_number, Usertype, Password, confirm_password) VALUES (?, ?, ?, ?,?, ?, ?, ?)");
 

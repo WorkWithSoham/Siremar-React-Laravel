@@ -1,5 +1,8 @@
 const axios = require("axios");
 
+// module.exports.url = "http://backend.sst0847.uta.cloud/functions/";
+module.exports.url = "http://localhost:8000/functions/";
+
 module.exports.loginAuth = (email, password) => {
   const getList = () => {
     return axios({
@@ -41,4 +44,38 @@ module.exports.registerUser = (data) => {
   }
 };
 
-module.exports.url = "http://backend.sst0847.uta.cloud/functions/";
+module.exports.registerSchool = (data) => {
+  if (data.name) {
+    axios({
+      url: module.exports.url + "insertSchools.php",
+      method: "post",
+      data: data,
+    }).then((res) => {
+      // console.log(res);
+    });
+  }
+};
+
+module.exports.registerBusiness = (data) => {
+  if (data.Name) {
+    axios({
+      url: module.exports.url + "insertBusiness.php",
+      method: "post",
+      data: data,
+    }).then((res) => {
+      // console.log(res);
+    });
+  }
+};
+
+module.exports.registerMoveOut = (data) => {
+  if (data.currentLocation) {
+    axios({
+      url: module.exports.url + "insertMoveOut.php",
+      method: "post",
+      data: data,
+    }).then((res) => {
+      console.log(res);
+    });
+  }
+};

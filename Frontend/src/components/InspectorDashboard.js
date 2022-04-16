@@ -6,13 +6,13 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 
 import axios from "axios";
-import { url } from '../utils/auth'
+import { registerMoveOut, registerUser, url } from "../utils/auth";
 import Chat from "./Chat";
 
 export default function InspectorDashboard() {
   const getList = async (table) => {
     return axios({
-      url: url + 'get_list.php',
+      url: url + "get_list.php",
       method: "post",
       data: {
         table: table,
@@ -79,7 +79,7 @@ export default function InspectorDashboard() {
                 }}
               >
                 <h2>Register Inspector</h2>
-                <form>
+                <form id="userForm">
                   <div className="row">
                     <div className="col-75">
                       <input type="text" id="name" placeholder="Full Name.." />
@@ -135,9 +135,10 @@ export default function InspectorDashboard() {
                           userType: "IP",
                         };
 
-                        console.log(data);
+                        registerUser(data);
+                        document.getElementById("userForm").reset();
 
-                        alert(`${entity} successfully created`);
+                        alert("Created Successfully!");
                       }}
                     />
                   </div>
@@ -156,16 +157,7 @@ export default function InspectorDashboard() {
                 }}
               >
                 <h2>Register Move Out</h2>
-                <form>
-                  <div className="row">
-                    <div className="col-75">
-                      <input
-                        type="text"
-                        id="c_add"
-                        placeholder="Mention current address.."
-                      />
-                    </div>
-                  </div>
+                <form id="moveOutForm">
                   <div className="row">
                     <div className="col-75">
                       <input
@@ -187,7 +179,7 @@ export default function InspectorDashboard() {
                   <div className="row">
                     <div className="col-75">
                       <textarea
-                        id="feedback"
+                        id="mres"
                         placeholder="We would love to know the reason for move out..."
                         style={{ height: "200px" }}
                       ></textarea>
@@ -200,8 +192,18 @@ export default function InspectorDashboard() {
                       id="submit"
                       value="Submit"
                       onClick={() => {
-                        setEntity("Inspector");
-                        alert(`${entity} successfully created`);
+                        const data = {
+                          currentLocation:
+                            document.getElementById("l_add").value,
+                          moveOutDate: document.getElementById("mod").value,
+                          reason: document.getElementById("mres").value,
+                          userId: JSON.parse(
+                            window.sessionStorage.getItem("user")
+                          )["id"],
+                        };
+
+                        registerMoveOut(data);
+                        document.getElementById("moveOutForm").reset();
                       }}
                     />
                   </div>
@@ -239,16 +241,6 @@ export default function InspectorDashboard() {
                   </div>
                   <div className="row">
                     <div className="col-75">
-                      <select name="userType" id="fType">
-                        <option value="business">Business</option>
-                        <option value="school">School</option>
-                        <option value="event">Event</option>
-                        <option value="hospital">Hospital</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-75">
                       <input
                         type="date"
                         id="dor"
@@ -268,15 +260,8 @@ export default function InspectorDashboard() {
                       id="submit"
                       value="Submit"
                       onClick={() => {
-                        const data = {
-                          name: document.getElementById("fname").value,
-                          reg: document.getElementById("freg").value,
-                          dor: document.getElementById("dor").value,
-                          rloc: document.getElementById("rloc").value,
-                          fType: document.getElementById("fType").value,
-                        };
-
-                        console.log(data);
+                        const data = {}
+                        
                       }}
                     />
                   </div>

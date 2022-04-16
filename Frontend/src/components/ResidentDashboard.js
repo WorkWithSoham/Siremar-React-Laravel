@@ -5,19 +5,24 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import axios from "axios";
-import { url } from "../utils/auth";
+import {
+  url,
+  registerSchool,
+  registerBusiness,
+  registerMoveOut,
+} from "../utils/auth";
 import Chat from "./Chat";
 
 export default function ResidentDashboard() {
   const getList = async (table) => {
     return axios({
-      url: url + 'get_list.php',
+      url: url + "get_list.php",
       method: "post",
       data: {
         table: table,
       },
     }).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       if (table === "flights") {
         setFlightDetails(res.data);
       }
@@ -223,7 +228,7 @@ export default function ResidentDashboard() {
               }}
             >
               <h2>Register School</h2>
-              <form>
+              <form id="schoolForm">
                 <div className="row">
                   <div className="col-25">
                     <label htmlFor="sname">School Name</label>
@@ -252,31 +257,6 @@ export default function ResidentDashboard() {
                 </div>
                 <div className="row">
                   <div className="col-25">
-                    <label htmlFor="country">Highest Degree</label>
-                  </div>
-                  <div className="col-75">
-                    <select id="shigh" name="country">
-                      <option value="5">Elementary School</option>
-                      <option value="8">Middle School</option>
-                      <option value="12">High School</option>
-                    </select>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-25">
-                    <label htmlFor="subject">Description</label>
-                  </div>
-                  <div className="col-75">
-                    <textarea
-                      id="sdesc"
-                      name="sdesc"
-                      placeholder="Write something about your school.."
-                      style={{ height: "200px" }}
-                    ></textarea>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-25">
                     <label htmlFor="sloc">RegisteredBy</label>
                   </div>
                   <div className="col-75">
@@ -299,13 +279,11 @@ export default function ResidentDashboard() {
                     const data = {
                       name: document.getElementById("sname").value,
                       location: document.getElementById("sloc").value,
-                      regBy: document.getElementById("sreg").value,
-                      highestDeg: document.getElementById("shigh").value,
-                      desc: document.getElementById("sdesc").value,
-                      db: "schools",
+                      registeredBy: document.getElementById("sreg").value,
                     };
-
-                    console.log(data);
+                    registerSchool(data);
+                    alert("School created!");
+                    document.getElementById("schoolForm").reset();
                   }}
                 />
               </div>
@@ -323,7 +301,7 @@ export default function ResidentDashboard() {
               }}
             >
               <h2>Register your Company</h2>
-              <form>
+              <form id="businessForm">
                 <div className="row">
                   <div className="col-25">
                     <label htmlFor="fname">Company Name</label>
@@ -378,19 +356,6 @@ export default function ResidentDashboard() {
                 </div>
                 <div className="row">
                   <div className="col-25">
-                    <label htmlFor="subject">Description</label>
-                  </div>
-                  <div className="col-75">
-                    <textarea
-                      id="bdesc"
-                      name="bdesc"
-                      placeholder="Write something about your company.."
-                      style={{ height: "200px" }}
-                    ></textarea>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-25">
                     <label htmlFor="country">Start date</label>
                   </div>
                   <div className="col-75">
@@ -411,15 +376,15 @@ export default function ResidentDashboard() {
                   value="Submit"
                   onClick={() => {
                     const data = {
-                      name: document.getElementById("bname").value,
-                      type: document.getElementById("btype").value,
-                      initialInv: document.getElementById("binv").value,
-                      owner: document.getElementById("bown").value,
-                      desc: document.getElementById("bdesc").value,
-                      startDate: document.getElementById("bstart").value,
+                      Name: document.getElementById("bname").value,
+                      Type: document.getElementById("btype").value,
+                      Investment: document.getElementById("binv").value,
+                      Owner: document.getElementById("bown").value,
+                      StartedOn: document.getElementById("bstart").value,
                     };
 
-                    console.log(data);
+                    registerBusiness(data);
+                    document.getElementById("businessForm").reset();
                   }}
                 />
               </div>
@@ -436,7 +401,7 @@ export default function ResidentDashboard() {
               }}
             >
               <h2>Register Move Out</h2>
-              <form>
+              <form id="moveOutForm">
                 <div className="row">
                   <div className="col-25">
                     <label htmlFor="btype">Latest Address</label>
@@ -484,12 +449,16 @@ export default function ResidentDashboard() {
                     value="Submit"
                     onClick={() => {
                       const data = {
-                        ladd: document.getElementById("madd").value,
-                        mod: document.getElementById("mod").value,
+                        currentLocation: document.getElementById("madd").value,
+                        moveOutDate: document.getElementById("mod").value,
                         reason: document.getElementById("mres").value,
+                        userId: JSON.parse(
+                          window.sessionStorage.getItem("user")
+                        )["id"],
                       };
 
-                      console.log(data);
+                      registerMoveOut(data);
+                      document.getElementById("moveOutForm").reset();
                     }}
                   />
                 </div>
