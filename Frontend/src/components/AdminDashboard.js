@@ -8,12 +8,12 @@ import axios from "axios";
 
 import Chat from "./Chat";
 import DetailChart from "./DetailChart";
-import { url } from '../utils/auth'
+import { deleteByID, url } from "../utils/auth";
 
 export default function AdminDashboard() {
   const getList = async (table) => {
     return axios({
-      url: url + 'get_list.php',
+      url: url + "get_list.php",
       method: "post",
       data: {
         table: table,
@@ -40,16 +40,14 @@ export default function AdminDashboard() {
   }, []);
 
   var [countyDetails, setCountyDetails] = useState([]);
-  var [eventDetails, setEventDetails] = useState([]);
+  // var [eventDetails, setEventDetails] = useState([]);
   var [businessDetails, setBusinessDetails] = useState([]);
   var [hospitalDetails, setHospitalDetails] = useState([]);
 
-  
   const [showChart, setShowChart] = useState(false);
   const greetings = ["Hello", "Namaste", "Bonjour", "Hola", "Welcome"];
   const [value, setValue] = useState("1");
   const [entity, setEntity] = useState("");
-
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -133,6 +131,7 @@ export default function AdminDashboard() {
                             id="delete"
                             value="Delete"
                             onClick={() => {
+                              deleteByID("county", value.id);
                               countyDetails.splice(idx, 1);
                               console.log(countyDetails);
                               setCountyDetails([...countyDetails]);

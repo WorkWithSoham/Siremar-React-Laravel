@@ -26,6 +26,17 @@ module.exports.loginAuth = (email, password) => {
   getList();
 };
 
+module.exports.deleteByID = (table, id) => {
+  axios({
+    url: module.exports.url + "delete.php",
+    method: "post",
+    data: {
+      table: table,
+      id: id,
+    },
+  });
+};
+
 module.exports.registerUser = (data) => {
   const regUser = () => {
     return axios({
