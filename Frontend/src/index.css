@@ -920,6 +920,7 @@ textarea {
 } */
 
 .chatDiv {
+  width: 25%;
   margin: auto;
   display: inline-flex;
   border-style: solid;
@@ -941,6 +942,7 @@ textarea {
 }
 
 .chatDiv .chat {
+  height: 20vh;
   display: block;
   max-height: 30vh;
   overflow-y: scroll;

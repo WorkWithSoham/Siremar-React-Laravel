@@ -1,7 +1,7 @@
 const axios = require("axios");
 
-// module.exports.url = "http://backend.sst0847.uta.cloud/functions/";
-module.exports.url = "http://localhost:8000/functions/";
+module.exports.url = "http://backend.sst0847.uta.cloud/functions/";
+// module.exports.url = "http://localhost:8000/functions/";
 
 module.exports.loginAuth = (email, password) => {
   const getList = () => {
