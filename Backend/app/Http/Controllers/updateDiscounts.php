@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class updateBusiness extends Controller
+class updateDiscounts extends Controller
 {
-    public function uBusiness(Request $request)
-    {// Check connection
+    public function uDiscounts(Request $request)
+   {
+        // Check connection
         $servername = "utacloud3.reclaimhosting.com";
         $username = "sst0847_siremar";
         $password = "Group24sps";
@@ -25,39 +26,35 @@ class updateBusiness extends Controller
             exit();
         }
 
-        $Id = $_GET['Id'];
+        $id = $_GET['id'];
         if (isset($_POST['update'])) {
             // if (true) {
-            $Name = $_POST['Name'];
-            $Owner = $_POST['Owner'];
-            $Type = $_POST['Type'];
-            $Investment = $_POST['Investment'];
-            $StartedOn = $_POST['StartedOn'];
+            $discount = $_POST['discount'];
+            $domain = $_POST['domain'];
+            $expiryDate = $_POST['expiryDate'];
         
-            $query = "UPDATE business SET Name=" . "'$Name'" . ", Owner=" . "'$Owner'" . ", Type=" . "'$Type'" . ", Investment=" . "'$Investment'" . ", StartedOn=" . "'$StartedOn'" . " WHERE Id=" . "'$Id'";
+            $query = "UPDATE discounts SET discount=" . "'$discount'" . ", domain=" . "'$domain'" . ", expiryDate=" . "'$expiryDate'" . " WHERE id=" . "'$id'";
             echo $query;
             $result = $conn->query($query);
             if ($result == true) {
                 echo "Record updated!";
         
                 // fetch data and send to frontend
-                $id = $_GET['Id'];
-                $query = "SELECT * FROM business WHERE Id=$Id";
+                $id = $_GET['id'];
+                $query = "SELECT * FROM flights WHERE id=$id";
                 $result = $conn->query($query);
                 if ($result->numRows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        $Name = $_POST['Name'];
-                        $Owner = $_POST['Owner'];
-                        $Type = $_POST['Type'];
-                        $Investment = $_POST['Investment'];
-                        $StartedOn = $_POST['StartedOn'];
+                        $discount = $_POST['discount'];
+                        $domain = $_POST['domain'];
+                        $expiryDate = $_POST['expiryDate'];
                     }
+                
                 }
-        
             } else {
                 echo "Error occured!" . $query . "<br>" . $conn->error;
             }
-        }
-        
+
     }
 }
+   

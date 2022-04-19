@@ -8,6 +8,7 @@ class insertBusiness extends Controller
 {
     public function iBusiness(Request $request)
     {
+        $_POST = $request;
         try {
             // Check connection
             $servername = "utacloud3.reclaimhosting.com";
@@ -32,7 +33,8 @@ class insertBusiness extends Controller
                 $stmt->bind_param("sssss", $_POST['Name'], $_POST['Owner'], $_POST['Type'], $_POST['Investment'], $_POST['StartedOn']);
             
                 $stmt->execute();
-            
+                echo "Business inserted";
+                
             } catch (Exception $e) {
                 echo $e->getMessage();
             }            
