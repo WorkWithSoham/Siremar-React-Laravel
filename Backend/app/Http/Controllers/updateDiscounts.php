@@ -57,4 +57,4 @@ class updateDiscounts extends Controller
 
     }
 }
-   
+} 
