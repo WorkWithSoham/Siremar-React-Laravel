@@ -29,7 +29,7 @@ class getList extends Controller
                 exit();
             }
 
-            // $tableName = $_POST['table'];
+            $tableName = $_POST['table'];
 
             $sql = "SELECT * FROM $tableName";
             // $sql = "SELECT 'id', name FROM users";
