@@ -27,9 +27,9 @@ class insertUsers extends Controller
                 exit();
             }
             
-                $stmt = $connection->prepare("INSERT INTO Users (place_of_birth, email_id, date_of_birth, phone_number, userType, Password, confirm_password) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                $stmt = $connection->prepare("INSERT INTO Users (Name, place_of_birth, email_id, date_of_birth, phone_number, userType, Password, confirm_password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             
-                $stmt->bind_param("sssssss", $_POST['place_of_birth'], $_POST['email_id'], $_POST['date_of_birth'], $_POST['phone_number'], $_POST['userType'], $_POST['Password'], $_POST['confirm_password']);
+                $stmt->bind_param("ssssssss", $_POST['Name'], $_POST['place_of_birth'], $_POST['email_id'], $_POST['date_of_birth'], $_POST['phone_number'], $_POST['userType'], $_POST['Password'], $_POST['confirm_password']);
             
                 $stmt->execute();
             
