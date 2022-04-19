@@ -15,3 +15,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('messages', [\App\Http\Controllers\ChatController::class, 'message']);
 Route::post('getlist', [\App\Http\Controllers\getList::class, 'gList']);
+Route::post('insertbuisness', [\App\Http\Controllers\insertBusiness::class, 'iBusiness']);
+Route::post('updatebuisness', [\App\Http\Controllers\updateBusiness::class, 'uBusiness']);
