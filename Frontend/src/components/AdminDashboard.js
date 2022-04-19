@@ -8,7 +8,7 @@ import axios from "axios";
 
 import Chat from "./Chat";
 import DetailChart from "./DetailChart";
-import { deleteByID, url } from "../utils/auth";
+import { deleteByID, registerEntity, url } from "../utils/auth";
 
 export default function AdminDashboard() {
   const getList = async (table) => {
@@ -133,7 +133,6 @@ export default function AdminDashboard() {
                             onClick={() => {
                               deleteByID("county", value.id);
                               countyDetails.splice(idx, 1);
-                              console.log(countyDetails);
                               setCountyDetails([...countyDetails]);
                               alert(`${entity} successfully deleted`);
                             }}
@@ -158,7 +157,7 @@ export default function AdminDashboard() {
                 }}
               >
                 <h2>Register County</h2>
-                <form>
+                <form id="cForm">
                   <div className="row">
                     <div className="col-75">
                       <input
@@ -229,9 +228,10 @@ export default function AdminDashboard() {
                           hospital: document.getElementById("CHosp").value,
                           event: document.getElementById("Cevents").value,
                         };
-
+                        registerEntity(county, "insertCounty.php");
                         setCountyDetails([...countyDetails, county]);
-                        console.log(countyDetails);
+                        alert("County successfully created!");
+                        document.getElementById("cForm").reset();
                       }}
                     />
                   </div>
@@ -251,7 +251,7 @@ export default function AdminDashboard() {
           </TabPanel>
 
           <TabPanel value="2" sx={{ width: "100%" }}>
-            <h1>Feature Section</h1>
+            <h1>Business Section</h1>
             <div className="featDiv">
               <table
                 className="table"
@@ -303,10 +303,10 @@ export default function AdminDashboard() {
                             id="delete"
                             value="Delete"
                             onClick={() => {
+                              deleteByID("business", value.Id);
                               businessDetails.splice(key, 1);
                               setBusinessDetails([...businessDetails]);
-                              setEntity("Business");
-                              alert(`${entity} successfully deleted`);
+                              alert(`Business successfully deleted`);
                             }}
                           />
                         </td>
@@ -329,7 +329,7 @@ export default function AdminDashboard() {
                 }}
               >
                 <h2>Register Business</h2>
-                <form>
+                <form id="busForm">
                   <div className="row">
                     <div className="col-75">
                       <input type="text" id="bName" placeholder="Name.." />
@@ -349,7 +349,7 @@ export default function AdminDashboard() {
                       <input
                         type="text"
                         id="btype"
-                        placeholder="Place of Birth..."
+                        placeholder="Business Type..."
                       />
                     </div>
                   </div>
@@ -382,12 +382,13 @@ export default function AdminDashboard() {
                           Owner: document.getElementById("bown").value,
                           Type: document.getElementById("btype").value,
                           Investment: document.getElementById("binit").value,
+                          StartedOn: document.getElementById("dos").value,
                         };
-
+                        // registerBusiness(business);
+                        registerEntity(business, "insertBusiness.php");
                         setBusinessDetails([...businessDetails, business]);
-                        console.log("Hello");
-                        setEntity("Business");
-                        alert(`${entity} successfully created`);
+                        alert(`Business successfully created`);
+                        document.getElementById("busForm").reset();
                       }}
                     />
                   </div>
@@ -471,7 +472,7 @@ export default function AdminDashboard() {
                 }}
               >
                 <h2>Register Hospital</h2>
-                <form>
+                <form id="hospForm">
                   <div className="row">
                     <div className="col-75">
                       <input type="text" id="hName" placeholder="Name.." />
@@ -523,10 +524,11 @@ export default function AdminDashboard() {
                           location: document.getElementById("hloc").value,
                         };
 
+                        // registerHospital(hosp);
+                        registerEntity(hosp, "insertHospital.php");
                         setHospitalDetails([...hospitalDetails, hosp]);
-                        console.log("Hello");
-                        setEntity("Hospital");
-                        alert(`${entity} successfully created`);
+                        alert(`Hospital successfully created`);
+                        document.getElementById("hospForm").reset();
                       }}
                     />
                   </div>

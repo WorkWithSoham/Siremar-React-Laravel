@@ -1,7 +1,7 @@
 const axios = require("axios");
 
-module.exports.url = "http://backend.sst0847.uta.cloud/functions/";
-// module.exports.url = "http://localhost:8000/functions/";
+// module.exports.url = "http://backend.sst0847.uta.cloud/functions/";
+module.exports.url = "http://localhost:8000/functions/";
 
 module.exports.loginAuth = (email, password) => {
   const getList = () => {
@@ -37,7 +37,7 @@ module.exports.deleteByID = (table, id) => {
   });
 };
 
-module.exports.registerUser = (data) => {
+module.exports.registerUser = (data, third=false) => {
   const regUser = () => {
     return axios({
       url: module.exports.url + "insertUsers.php",
@@ -47,7 +47,7 @@ module.exports.registerUser = (data) => {
       console.log(res);
     });
   };
-  if (data.Password === data.confirm_password) {
+  if (data.Password === data.confirm_password && !third) {
     regUser();
     module.exports.loginAuth(data.email_id, data.Password);
   } else {
@@ -55,38 +55,12 @@ module.exports.registerUser = (data) => {
   }
 };
 
-module.exports.registerSchool = (data) => {
-  if (data.name) {
-    axios({
-      url: module.exports.url + "insertSchools.php",
-      method: "post",
-      data: data,
-    }).then((res) => {
-      // console.log(res);
-    });
-  }
-};
-
-module.exports.registerBusiness = (data) => {
-  if (data.Name) {
-    axios({
-      url: module.exports.url + "insertBusiness.php",
-      method: "post",
-      data: data,
-    }).then((res) => {
-      // console.log(res);
-    });
-  }
-};
-
-module.exports.registerMoveOut = (data) => {
-  if (data.currentLocation) {
-    axios({
-      url: module.exports.url + "insertMoveOut.php",
-      method: "post",
-      data: data,
-    }).then((res) => {
-      console.log(res);
-    });
-  }
-};
+module.exports.registerEntity = (data, Xurl) => {
+  axios({
+    url: module.exports.url + Xurl,
+    method: "post",
+    data: data,
+  }).then((res) => {
+    console.log(res);
+  });
+}

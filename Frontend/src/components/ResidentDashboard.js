@@ -7,9 +7,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import axios from "axios";
 import {
   url,
-  registerSchool,
-  registerBusiness,
-  registerMoveOut,
+  registerEntity,
 } from "../utils/auth";
 import Chat from "./Chat";
 
@@ -281,7 +279,8 @@ export default function ResidentDashboard() {
                       location: document.getElementById("sloc").value,
                       registeredBy: document.getElementById("sreg").value,
                     };
-                    registerSchool(data);
+                    // registerSchool(data);
+                    registerEntity(data, 'insertSchool.php')
                     alert("School created!");
                     document.getElementById("schoolForm").reset();
                   }}
@@ -383,7 +382,8 @@ export default function ResidentDashboard() {
                       StartedOn: document.getElementById("bstart").value,
                     };
 
-                    registerBusiness(data);
+                    // registerBusiness(data);
+                    registerEntity(data, 'insertBusiness.php')
                     document.getElementById("businessForm").reset();
                   }}
                 />
@@ -457,7 +457,8 @@ export default function ResidentDashboard() {
                         )["id"],
                       };
 
-                      registerMoveOut(data);
+                      // registerMoveOut(data);
+                      registerEntity(data, 'insertMoveOut.php')
                       document.getElementById("moveOutForm").reset();
                     }}
                   />
