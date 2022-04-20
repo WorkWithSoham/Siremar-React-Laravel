@@ -13,7 +13,7 @@ import { deleteByID, registerEntity, url } from "../utils/auth";
 export default function AdminDashboard() {
   const getList = async (table) => {
     return axios({
-      url: url + "get_list.php",
+      url: url + "getlist",
       method: "post",
       data: {
         table: table,
