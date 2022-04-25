@@ -8,6 +8,7 @@ $rest_json = file_get_contents("php://input");
 $_POST = json_decode($rest_json, true);
 
 try {
+    $_POST = $request->all();
 
     $connection = get_db_conn();
     if ($connection->connect_errno) {

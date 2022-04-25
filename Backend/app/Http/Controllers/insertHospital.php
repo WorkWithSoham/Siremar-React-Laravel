@@ -9,6 +9,7 @@ class insertHospital extends Controller
     public function iHospital(Request $request)
     {
         try {
+            $_POST = $request->all();
             // Check connection
             $servername = "utacloud3.reclaimhosting.com";
             $username = "sst0847_siremar";

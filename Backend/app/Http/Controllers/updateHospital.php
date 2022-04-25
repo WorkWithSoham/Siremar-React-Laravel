@@ -17,6 +17,8 @@ class updateHospital extends Controller
             $password = "Group24sps";
             $database = "sst0847_backend";
 
+            $_POST = $request->all();
+
             // Create connection
             $connection = mysqli_connect($servername, $username, $password, $database);
 

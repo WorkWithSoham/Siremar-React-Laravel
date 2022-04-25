@@ -9,6 +9,7 @@ class insertDiscounts extends Controller
     public function iDiscounts(Request $request)
     {
         try {
+            $_POST = $request->all();
             // Check connection
             $servername = "utacloud3.reclaimhosting.com";
             $username = "sst0847_siremar";

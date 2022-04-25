@@ -9,6 +9,7 @@ class insertMoveOut extends Controller
     public function iMoveOut(Request $request)
     {
         try {
+            $_POST = $request->all();
             // Check connection
             $servername = "utacloud3.reclaimhosting.com";
             $username = "sst0847_siremar";

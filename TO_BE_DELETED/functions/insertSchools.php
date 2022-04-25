@@ -9,6 +9,7 @@ $_POST = json_decode($rest_json, true);
 // Port will be removed once deployed on the cloud
 
 try {
+    $_POST = $request->all();
     // Check connection
     $connection = get_db_conn();
     if ($connection->connect_errno) {
