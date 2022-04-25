@@ -37,7 +37,7 @@ module.exports.deleteByID = (table, id) => {
   });
 };
 
-module.exports.registerUser = (data, third=false) => {
+module.exports.registerUser = (data, third = false) => {
   const regUser = () => {
     return axios({
       url: module.exports.url + "insertusers",
@@ -63,4 +63,4 @@ module.exports.registerEntity = (data, Xurl) => {
   }).then((res) => {
     console.log(res);
   });
-}
+};

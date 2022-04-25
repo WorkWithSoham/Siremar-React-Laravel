@@ -220,7 +220,6 @@ export default function AdminDashboard() {
                       onClick={() => {
                         const county = {
                           name: document.getElementById("Cname").value,
-                          area: "2132sqkm",
                           school: document.getElementById("Cschools").value,
                           population:
                             document.getElementById("Cpopulation").value,
@@ -228,7 +227,8 @@ export default function AdminDashboard() {
                           hospital: document.getElementById("CHosp").value,
                           event: document.getElementById("Cevents").value,
                         };
-                        registerEntity(county, "insertCounty.php");
+                        console.log(county);
+                        registerEntity(county, "insertcounty");
                         setCountyDetails([...countyDetails, county]);
                         alert("County successfully created!");
                         document.getElementById("cForm").reset();
@@ -238,7 +238,7 @@ export default function AdminDashboard() {
                 </form>
               </div>
             </div>
-            <div style={{ width: "100%", marginInline: "50%" }}>
+            <div style={{ marginLeft: "50%" }}>
               <input
                 style={{ textAlign: "center", margin: "auto" }}
                 id="submit"
@@ -385,7 +385,7 @@ export default function AdminDashboard() {
                           StartedOn: document.getElementById("dos").value,
                         };
                         // registerBusiness(business);
-                        registerEntity(business, "insertBusiness.php");
+                        registerEntity(business, "insertbusiness");
                         setBusinessDetails([...businessDetails, business]);
                         alert(`Business successfully created`);
                         document.getElementById("busForm").reset();
@@ -525,7 +525,7 @@ export default function AdminDashboard() {
                         };
 
                         // registerHospital(hosp);
-                        registerEntity(hosp, "insertHospital.php");
+                        registerEntity(hosp, "inserthospital");
                         setHospitalDetails([...hospitalDetails, hosp]);
                         alert(`Hospital successfully created`);
                         document.getElementById("hospForm").reset();

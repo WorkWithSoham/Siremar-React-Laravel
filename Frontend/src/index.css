@@ -106,7 +106,7 @@ code {
   text-align: center;
   width: 60%;
   height: 10vh;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 
 .featDiv {
@@ -121,6 +121,10 @@ code {
   width: 60%;
   height: 8vh;
   overflow: scroll;
+}
+
+.featDiv table td {
+  padding: 0%;
 }
 
 .featDiv td input {
@@ -764,7 +768,7 @@ tbody {
 .table td,
 .table th {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 5px;
 }
 
 .table th {

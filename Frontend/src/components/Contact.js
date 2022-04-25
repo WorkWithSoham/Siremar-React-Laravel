@@ -6,10 +6,10 @@ export default function Contact() {
     // e.preventDefault();
 
     emailjs
-      .sendForm("gmail", "youtube_example", e.target, "gjtqXBz16nZhHFACK")
+      .sendForm("service_lx098jj", "template_8r2o4ce", e.target, "gjtqXBz16nZhHFACK")
       .then(
         (result) => {
-          console.log(result.text);
+          // console.log(result.text);
         },
         (error) => {
           console.log(error.text);

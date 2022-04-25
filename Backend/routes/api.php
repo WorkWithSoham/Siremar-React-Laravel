@@ -32,5 +32,5 @@ Route::post('updateevents', [\App\Http\Controllers\updateEvents::class, 'uEvents
 Route::post('updateflights', [\App\Http\Controllers\updateFlights::class, 'uFlights']);
 Route::post('updatehospital', [\App\Http\Controllers\updateHospital::class, 'uHospital']);
 Route::post('updatemoveout', [\App\Http\Controllers\updateMoveOut::class, 'uMoveOut']);
-Route::post('updateSchool', [\App\Http\Controllers\updateSchool::class, 'uSchool']);
-Route::post('updateUsers', [\App\Http\Controllers\updateUsers::class, 'uUsers']);
+Route::post('updateschool', [\App\Http\Controllers\updateSchool::class, 'uSchool']);
+Route::post('updateusers', [\App\Http\Controllers\updateUsers::class, 'uUsers']);

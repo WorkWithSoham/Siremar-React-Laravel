@@ -27,15 +27,15 @@ class insertCounty extends Controller
                 echo "Failed to connect to MySQL: " . $connection->connect_error;
                 exit();
             }
-            
-                $stmt = $connection->prepare("INSERT INTO county (name, population, business, hospital, event, school) VALUES (?, ?, ?, ?, ?, ?)");
-            
-                $stmt->bind_param("ssssss", $_POST['name'], $_POST['population'], $_POST['business'], $_POST['hospital'], $_POST['event'], $_POST['school']);
-            
-                $stmt->execute();
-            
-            } catch (Exception $e) {
-                echo $e->getMessage();
-            }            
+
+            $stmt = $connection->prepare("INSERT INTO county (name, population, business, hospital, event, school) VALUES (?, ?, ?, ?, ?, ?)");
+
+            $stmt->bind_param("ssssss", $_POST['name'], $_POST['population'], $_POST['business'], $_POST['hospital'], $_POST['event'], $_POST['school']);
+
+            $stmt->execute();
+
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 }
