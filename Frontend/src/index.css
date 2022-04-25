@@ -228,7 +228,7 @@ input[type="time"] {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin-top: 6%;
+  margin-top: 10%;
 }
 
 .footerblock li {

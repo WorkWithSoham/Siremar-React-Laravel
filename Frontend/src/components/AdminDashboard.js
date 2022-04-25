@@ -251,7 +251,7 @@ export default function AdminDashboard() {
           </TabPanel>
 
           <TabPanel value="2" sx={{ width: "100%" }}>
-            <h1>Business Section</h1>
+            <h1>Feature Section</h1>
             <div className="featDiv">
               <table
                 className="table"
