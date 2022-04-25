@@ -1,12 +1,12 @@
 const axios = require("axios");
 
 // module.exports.url = "http://backend.sst0847.uta.cloud/functions/";
-module.exports.url = "http://localhost:8000/functions/";
+module.exports.url = "http://localhost:8000/api/";
 
 module.exports.loginAuth = (email, password) => {
   const getList = () => {
     return axios({
-      url: module.exports.url + "get_list.php",
+      url: module.exports.url + "getlist",
       method: "post",
       data: {
         table: "Users",
@@ -28,7 +28,7 @@ module.exports.loginAuth = (email, password) => {
 
 module.exports.deleteByID = (table, id) => {
   axios({
-    url: module.exports.url + "delete.php",
+    url: module.exports.url + "delete",
     method: "post",
     data: {
       table: table,
@@ -40,7 +40,7 @@ module.exports.deleteByID = (table, id) => {
 module.exports.registerUser = (data, third=false) => {
   const regUser = () => {
     return axios({
-      url: module.exports.url + "insertUsers.php",
+      url: module.exports.url + "insertusers",
       method: "post",
       data: data,
     }).then((res) => {
