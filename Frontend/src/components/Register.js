@@ -1,8 +1,16 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { registerUser } from "../utils/auth";
 import emailjs from "@emailjs/browser";
 
 export default function Register() {
+  const options = ["RE", "IP"];
+
+  const [option, setOption] = useState("RE");
+
+  const handleChange = (event) => {
+    setOption(event.target.value);
+  };
+
   const form = useRef();
 
   const sendEmail = () => {
@@ -50,7 +58,7 @@ export default function Register() {
               <input
                 type="Name"
                 id="phNo"
-                placeholder="Enter your Name"
+                placeholder="Enter your Phone number"
                 required
                 className="input-sizereg"
               />
@@ -64,7 +72,7 @@ export default function Register() {
               <input
                 type="Name"
                 id="POB"
-                placeholder="Enter your Name"
+                placeholder="Enter your place of Birth"
                 required
                 className="input-sizereg"
               />
@@ -77,12 +85,40 @@ export default function Register() {
               >
                 User Type
               </label>
-
-              <select name="userType" id="userType" style={{ width: "180px" }}>
-                <option value="IP">Inspector</option>
-                <option value="RE">Resident</option>
+              <select
+                id="userType"
+                name="type"
+                onChange={handleChange}
+                value={option}
+                style={{ width: "180px" }}
+              >
+                {options.map((option) => (
+                  <option key={option} value={option}>
+                    {option === "RE" ? "Resident" : "Inspector"}
+                  </option>
+                ))}
               </select>
             </div>
+
+            {option === "IP" && (
+              <div>
+                <div className="input-bodyreg">
+                  <label
+                    htmlFor="IPCode"
+                    style={{ marginTop: "4%", width: "110px" }}
+                  >
+                    Inspector code
+                  </label>
+                  <input
+                    type="password"
+                    id="IC"
+                    placeholder="Enter your secret inspector code"
+                    required
+                    className="input-sizereg"
+                  />
+                </div>
+              </div>
+            )}
 
             <div className="input-bodyreg">
               <label
@@ -167,7 +203,7 @@ export default function Register() {
                     document.getElementById("confirmPassword").value,
                   email_id: document.getElementById("email").value,
                   phone_number: document.getElementById("phNo").value,
-                  Usertype: document.getElementById("userType").value,
+                  userType: option,
                 };
                 sendEmail();
                 registerUser(data);

@@ -3,13 +3,13 @@ import emailjs from "emailjs-com";
 
 export default function Contact() {
   function sendEmail(e) {
-    // e.preventDefault();
+    e.preventDefault();
 
     emailjs
-      .sendForm("service_lx098jj", "template_8r2o4ce", e.target, "gjtqXBz16nZhHFACK")
+      .sendForm("service_lx098jj", "template_8r2o4ce", e.target, "o0GR0j9OZanGC0io-")
       .then(
         (result) => {
-          // console.log(result.text);
+          console.log(result.text);
         },
         (error) => {
           console.log(error.text);

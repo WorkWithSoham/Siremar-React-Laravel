@@ -6,7 +6,7 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 
 import axios from "axios";
-import { registerEntity, registerUser, url } from "../utils/auth";
+import { deleteByID, registerEntity, registerUser, url } from "../utils/auth";
 import Chat from "./Chat";
 
 export default function InspectorDashboard() {
@@ -671,14 +671,7 @@ export default function InspectorDashboard() {
           </TabPanel>
           <TabPanel value="2">
             <div className="countyDiv" style={{ paddingInline: "30%" }}>
-              <table
-                className="table"
-                style={{
-                  maxHeight: "44vh",
-                  overflow: "scroll",
-                  margin: "auto",
-                }}
-              >
+              <table className="table">
                 <tbody>
                   <tr>
                     <th>Name</th>
@@ -686,11 +679,12 @@ export default function InspectorDashboard() {
                     <th>Businesses</th>
                     <th>Hospitals</th>
                     <th>Population</th>
+                    <th>Events</th>
                     <th>Actions</th>
                   </tr>
-                  {countyDetails.map((value, key) => {
+                  {countyDetails.map((value, idx) => {
                     return (
-                      <tr key={key}>
+                      <tr key={idx}>
                         <td>
                           <input defaultValue={value.name} />
                         </td>
@@ -707,6 +701,9 @@ export default function InspectorDashboard() {
                           <input defaultValue={value.population} />
                         </td>
                         <td>
+                          <input defaultValue={value.event} />
+                        </td>
+                        <td>
                           <input
                             type="button"
                             id="update"
@@ -721,8 +718,8 @@ export default function InspectorDashboard() {
                             id="delete"
                             value="Delete"
                             onClick={() => {
-                              countyDetails.splice(key, 1);
-                              console.log(countyDetails);
+                              deleteByID("county", value.id);
+                              countyDetails.splice(idx, 1);
                               setCountyDetails([...countyDetails]);
                               alert(`${entity} successfully deleted`);
                             }}

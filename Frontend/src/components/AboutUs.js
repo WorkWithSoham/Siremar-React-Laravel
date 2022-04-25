@@ -12,7 +12,7 @@ export default function AboutUs() {
           src="https://orlandoinformer.com/wp-content/uploads/2019/12/margaritaville-resort-orlando-lobby-seat-1024x768.jpg"
           className="img1"
         />
-        <p style={{ marginTop: "10rem" }}>
+        <p style={{ marginTop: "4rem" }}>
           Isla de Margarita was discovered by Columbus in 1498 and quickly
           became known for its pearls. Through the centuries, settlements on the
           island were besieged by Indians (in reprisal for slave raids on the
